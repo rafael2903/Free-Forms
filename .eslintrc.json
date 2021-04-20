@@ -18,7 +18,9 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react", "prettier", "jest"
+        "react",
+        "prettier",
+        "jest"
     ],
     "rules": {
         "prettier/prettier": ["error"],
