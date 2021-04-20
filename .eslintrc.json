@@ -1,11 +1,14 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb", "prettier"
+        "airbnb",
+        "prettier",
+        "plugin:jest/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -15,9 +18,11 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react", "prettier"
+        "react", "prettier", "jest"
     ],
     "rules": {
-        "prettier/prettier": ["error"]
+        "prettier/prettier": ["error"],
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     }
 }
