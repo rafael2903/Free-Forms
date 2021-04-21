@@ -15,6 +15,8 @@ const GlobalStyle = createGlobalStyle`
     div.App {
         display: flex;
         flex-direction: column;
+        justify-content:space-between;
+        align-items: space-around;
     }
 
 `;
