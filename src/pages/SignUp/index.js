@@ -12,6 +12,7 @@ function SignUp() {
         <FormTitle>Cadastre-se</FormTitle>
         <FormInput type="email" />
         <FormInput type="password" />
+        <FormInput type="password" />
       </Container>
     </Main>
   );
