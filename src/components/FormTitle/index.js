@@ -1,7 +1,3 @@
-import { StyledTitle } from './styles';
-
-function FormTitle() {
-  return <StyledTitle />;
-}
+import { FormTitle } from './styles';
 
 export default FormTitle;
