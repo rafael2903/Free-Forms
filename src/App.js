@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Header from './components/Header';
 
 import GlobalStyle from './GlobalStyles';
+import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import { isAdministrator, isLoggedIn } from './services/auth';
 
@@ -20,7 +21,7 @@ function App() {
         <Switch>
           <Route exact path="/" />
 
-          {/* <Route path="/login">{loggedIn ? <Redirect to="/" /> : <Login />}</Route> */}
+          <Route path="/login">{loggedIn ? <Redirect to="/" /> : <Login />}</Route>
 
           <Route path="/signup">{loggedIn ? <Redirect to="/" /> : <SignUp />}</Route>
         </Switch>
