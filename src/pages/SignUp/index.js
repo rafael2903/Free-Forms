@@ -2,7 +2,7 @@ import { Container } from '../../components/FormContainer/styles';
 import Main from '../../components/Main';
 import FormTitle from '../../components/FormTitle/styles';
 import { Title } from '../../components/Title/style';
-import StyledInput from '../../components/FormInput/style';
+import FormInput from '../../components/FormInput/style';
 
 function SignUp() {
   return (
@@ -10,6 +10,8 @@ function SignUp() {
       <Title>Crie formulários incríveis, de graça</Title>
       <Container>
         <FormTitle>Cadastre-se</FormTitle>
+        <FormInput type="email" />
+        <FormInput type="password" />
       </Container>
     </Main>
   );
