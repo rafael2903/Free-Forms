@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 25%;
+export const FormContainer = styled.form`
+  width: 20%;
   min-width: 200px;
   max-width: 500px;
   border-radius: 12px;

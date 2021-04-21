@@ -1,7 +1,3 @@
-import { Container } from './styles';
-
-function FormContainer({ children }) {
-  return <Container>{children}</Container>;
-}
+import { FormContainer } from './styles';
 
 export default FormContainer;
