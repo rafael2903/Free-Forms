@@ -10,7 +10,10 @@ function SignUp() {
       <Title>Crie formulários incríveis, de graça</Title>
       <FormContainer>
         <FormTitle>Cadastre-se</FormTitle>
-      </FormContainer>
+        <FormInput type="email" />
+        <FormInput type="password" />
+        <FormInput type="password" />
+      </Container>
     </Main>
   );
 }
