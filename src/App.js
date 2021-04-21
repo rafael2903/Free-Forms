@@ -6,6 +6,7 @@ import Header from './components/Header';
 import GlobalStyle from './GlobalStyles';
 import SignUp from './pages/SignUp';
 import { isAdministrator, isLoggedIn } from './services/auth';
+import Login from './pages/Login';
 
 function App() {
   const [loggedIn, setloggedIn] = useState(() => isLoggedIn());
@@ -20,7 +21,7 @@ function App() {
         <Switch>
           <Route exact path="/" />
 
-          {/* <Route path="/login">{loggedIn ? <Redirect to="/" /> : <Login />}</Route> */}
+          <Route path="/login">{loggedIn ? <Redirect to="/" /> : <Login />}</Route>
 
           <Route path="/signup">{loggedIn ? <Redirect to="/" /> : <SignUp />}</Route>
         </Switch>
