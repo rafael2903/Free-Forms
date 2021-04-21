@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Header from './components/Header';
 
 import GlobalStyle from './GlobalStyles';
+import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import { isAdministrator, isLoggedIn } from './services/auth';
-import Login from './pages/Login';
 
 function App() {
   const [loggedIn, setloggedIn] = useState(() => isLoggedIn());
