@@ -1,15 +1,15 @@
-import { Container } from '../../components/FormContainer/styles';
+import FormContainer from '../../components/FormContainer';
 import Main from '../../components/Main';
-import FormTitle from '../../components/FormTitle/styles';
-import { Title } from '../../components/Title/style';
+import FormTitle from '../../components/FormTitle';
+import Title from '../../components/Title';
 
 function Login() {
   return (
     <Main>
       <Title>Crie formulários incríveis, de graça</Title>
-      <Container>
+      <FormContainer>
         <FormTitle>Faça login</FormTitle>
-      </Container>
+      </FormContainer>
     </Main>
   );
 }

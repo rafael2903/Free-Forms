@@ -1,4 +1,4 @@
-import { LogoContainer, StyledHeader, StyledP } from './style';
+import { LogoContainer, StyledHeader, StyledP } from './styles';
 import img from '../../assets/google-forms.svg';
 
 function Header() {

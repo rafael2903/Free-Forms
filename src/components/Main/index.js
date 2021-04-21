@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { StyledMain } from './style';
+import { StyledMain } from './styles';
 
 function Main({ children }) {
   return <StyledMain>{children}</StyledMain>;
