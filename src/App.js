@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Header from './components/Header';
 
 import GlobalStyle from './GlobalStyles';
+import SignUp from './pages/SignUp';
 import { isAdministrator, isLoggedIn } from './services/auth';
 
 function App() {
@@ -17,19 +18,11 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/">
-            <h1>oieee</h1>
-          </Route>
+          <Route exact path="/" />
 
-          {/* <Route path="/login">
-            {loggedIn ? (
-              <Redirect to="/" />
-            ) : (
-              <Login setloggedIn={setloggedIn} setId={setId} setAdmin={setAdmin} />
-            )}
-          </Route> */}
+          {/* <Route path="/login">{loggedIn ? <Redirect to="/" /> : <Login />}</Route> */}
 
-          {/* <Route path="/signup">{loggedIn ? <Redirect to="/" /> : <SignUp />}</Route> */}
+          <Route path="/signup">{loggedIn ? <Redirect to="/" /> : <SignUp />}</Route>
         </Switch>
       </Router>
     </div>
