@@ -12,6 +12,11 @@ const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
     }
 
+    div.App {
+        display: flex;
+        flex-direction: column;
+    }
+
 `;
 
 export default GlobalStyle;
