@@ -12,6 +12,7 @@ import FormLink from '../../components/FormLink';
 function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [senha, setPasswordconfirma] = useState('');
   return (
     <Main>
       <Title>Crie formulários incríveis, de graça</Title>
@@ -45,8 +46,8 @@ function SignUp() {
             <FormInput
               type="password"
               id="confirmaSenha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={senha}
+              onChange={(e) => setPasswordconfirma(e.target.value)}
             />
           </label>
         </InputContainer>
@@ -57,7 +58,6 @@ function SignUp() {
       </FormContainer>
     </Main>
   );
-  j;
 }
 
 export default SignUp;
