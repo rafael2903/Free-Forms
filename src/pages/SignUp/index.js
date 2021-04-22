@@ -57,6 +57,7 @@ function SignUp() {
       </FormContainer>
     </Main>
   );
+  j;
 }
 
 export default SignUp;
