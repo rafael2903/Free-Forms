@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import img from '../../assets/background-image.jpg';
+import img from '../../../assets/background-image.jpg';
 
 export const StyledMain = styled.main`
   height: auto;
