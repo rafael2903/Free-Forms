@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Oxygen','Montserrat', Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: 'Oxygen','Montserrat', 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
     }
     
     html, body, div#root, div.App {

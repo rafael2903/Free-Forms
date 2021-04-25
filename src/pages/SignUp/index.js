@@ -12,6 +12,7 @@ import api from '../../services/api';
 import { login } from '../../services/auth';
 import FormError from '../../components/Authentication/FormError';
 
+// EU01
 function SignUp({ setLoggedIn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,32 +42,35 @@ function SignUp({ setLoggedIn }) {
         <FormTitle>Cadastre-se</FormTitle>
         <InputContainer>
           <label htmlFor="email">
-            E-mail
+            Email
             <FormInput
               type="email"
               id="email"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
         </InputContainer>
         <InputContainer>
-          <label htmlFor="senha">
+          <label htmlFor="password">
             Senha
             <FormInput
               type="password"
-              id="senha"
+              id="password"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
         </InputContainer>
         <InputContainer>
-          <label htmlFor="confirmaSenha">
+          <label htmlFor="confirmPassword">
             Confirme sua senha
             <FormInput
               type="password"
-              id="confirmaSenha"
+              id="confirmPassword"
+              required
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />

@@ -8,6 +8,7 @@ export const StyledHeader = styled.header`
   padding: 0.5rem 2.3rem;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
 `;
 
 export const StyledP = styled.p`

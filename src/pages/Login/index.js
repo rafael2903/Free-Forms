@@ -12,6 +12,7 @@ import api from '../../services/api';
 import { login } from '../../services/auth';
 import FormError from '../../components/Authentication/FormError';
 
+// EU02 EU06
 function Login({ setLoggedIn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,25 +33,29 @@ function Login({ setLoggedIn }) {
   return (
     <Main>
       <Title>Crie formulários incríveis, de graça</Title>
-      <FormContainer onSubmit={handleSubmit}>
+      <FormContainer onSubmit={handleSubmit} data-testid="form">
         <FormTitle>Faça login</FormTitle>
         <InputContainer>
           <label htmlFor="email">
-            E-mail
+            Email
             <FormInput
               type="email"
               id="email"
+              alt="email"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
         </InputContainer>
         <InputContainer>
-          <label htmlFor="senha">
+          <label htmlFor="password">
             Senha
             <FormInput
               type="password"
-              id="senha"
+              id="password"
+              alt="senha"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

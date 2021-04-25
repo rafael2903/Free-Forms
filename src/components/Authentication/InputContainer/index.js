@@ -1,7 +1,4 @@
-import React from 'react';
-import { Container } from './styles';
+import { InputContainer } from './styles';
+// EU01 EU02 EU06
 
-function InputContainer({ children }) {
-  return <Container>{children}</Container>;
-}
 export default InputContainer;

@@ -1,10 +1,8 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders oie', () => {
+test('renders App component', () => {
   render(<App />);
-  // const linkElement = screen.getByText(/oie/i);
-  // expect(linkElement).toBeInTheDocument();
   expect(true).toBeTruthy();
 });

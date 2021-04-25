@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import Header from './components/Header';
@@ -22,10 +21,12 @@ function App() {
               {loggedIn ? <></> : <Redirect to="/login" />}
             </Route>
 
+            {/* EU02 EU06 */}
             <Route path="/login">
               {loggedIn ? <Redirect to="/" /> : <Login setLoggedIn={setLoggedIn} />}
             </Route>
 
+            {/* EU01 */}
             <Route path="/signup">
               {loggedIn ? <Redirect to="/" /> : <SignUp setLoggedIn={setLoggedIn} />}
             </Route>
