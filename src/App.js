@@ -6,25 +6,31 @@ import Header from './components/Header';
 import GlobalStyle from './GlobalStyles';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import { isAdministrator, isLoggedIn } from './services/auth';
 
 function App() {
-  const [loggedIn, setloggedIn] = useState(() => isLoggedIn());
-  const [admin, setAdmin] = useState(() => isAdministrator());
+  const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem('loggedIn')));
 
   return (
     <div className="App">
       <GlobalStyle />
 
       <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/" />
+        <>
+          <Header setLoggedIn={setLoggedIn} />
+          <Switch>
+            <Route exact path="/">
+              {loggedIn ? <></> : <Redirect to="/login" />}
+            </Route>
 
-          <Route path="/login">{loggedIn ? <Redirect to="/" /> : <Login />}</Route>
+            <Route path="/login">
+              {loggedIn ? <Redirect to="/" /> : <Login setLoggedIn={setLoggedIn} />}
+            </Route>
 
-          <Route path="/signup">{loggedIn ? <Redirect to="/" /> : <SignUp />}</Route>
-        </Switch>
+            <Route path="/signup">
+              {loggedIn ? <Redirect to="/" /> : <SignUp setLoggedIn={setLoggedIn} />}
+            </Route>
+          </Switch>
+        </>
       </Router>
     </div>
   );

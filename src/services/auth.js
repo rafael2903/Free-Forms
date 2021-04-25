@@ -7,7 +7,3 @@ export const login = (id, isAdmin) => {
   localStorage.setItem('is_admin', isAdmin);
   localStorage.setItem('loggedIn', true);
 };
-
-export const logout = () => {
-  localStorage.clear();
-};
