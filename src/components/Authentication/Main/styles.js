@@ -26,4 +26,5 @@ export const StyledMain = styled.main`
     background-attachment: fixed;
     background-position: top;
     background-size: cover;
+  }
 `;
