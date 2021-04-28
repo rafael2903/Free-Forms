@@ -6,6 +6,7 @@ import Header from './components/Header';
 import GlobalStyle from './GlobalStyles';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import VerForms from './pages/VerForms';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem('loggedIn')));
@@ -28,6 +29,10 @@ function App() {
 
             <Route path="/signup">
               {loggedIn ? <Redirect to="/" /> : <SignUp setLoggedIn={setLoggedIn} />}
+            </Route>
+
+            <Route path="/verforms">
+              {loggedIn ? <Redirect to="/" /> : <VerForms setLoggedIn={setLoggedIn} />}
             </Route>
           </Switch>
         </>
