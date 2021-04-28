@@ -19,7 +19,7 @@ function App() {
           <Header setLoggedIn={setLoggedIn} />
           <Switch>
             <Route exact path="/">
-              {loggedIn ? <></> : <Redirect to="/login" />}
+              {loggedIn ? <VerForms setLoggedIn={setLoggedIn} /> : <Redirect to="/login" />}
             </Route>
 
             {/* EU02 EU06 */}
@@ -30,10 +30,6 @@ function App() {
             {/* EU01 */}
             <Route path="/signup">
               {loggedIn ? <Redirect to="/" /> : <SignUp setLoggedIn={setLoggedIn} />}
-            </Route>
-
-            <Route path="/verforms">
-              {loggedIn ? <Redirect to="/" /> : <VerForms setLoggedIn={setLoggedIn} />}
             </Route>
           </Switch>
         </>

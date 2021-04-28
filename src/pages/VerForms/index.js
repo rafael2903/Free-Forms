@@ -7,9 +7,9 @@ import FormItem from '../../components/FormItem';
 
 function VerForms() {
   const forms = [
-    { id: 1, title: 'titulo' },
-    { id: 2, title: 'titulo' },
-    { id: 3, title: 'titulo' },
+    { id: 1, title: 'Formulário sem título 1' },
+    { id: 2, title: 'Formulário sem título 2' },
+    { id: 3, title: 'Formulário sem título 3' },
   ];
   return (
     <ContainerVerForms>
