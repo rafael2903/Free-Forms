@@ -19,7 +19,7 @@ function Header({ setLoggedIn }) {
         <StyledP>Free Forms</StyledP>
       </LogoContainer>
       <ButtonsContainer>
-        {pathname === '/' && <HeaderButton onClick={logout}>Sair</HeaderButton>}
+        {pathname === '/verforms' && <HeaderButton onClick={logout}>Sair</HeaderButton>}
       </ButtonsContainer>
     </StyledHeader>
   );
