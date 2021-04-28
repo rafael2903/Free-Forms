@@ -8,6 +8,8 @@ export const HeaderButton = styled.button`
   font-size: 0.9rem;
   cursor: pointer;
   border: none;
+  text-decoration: none;
+  margin-right: 1rem;
 
   :focus {
     outline: none;

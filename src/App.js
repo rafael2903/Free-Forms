@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Header from './components/Header';
 
 import GlobalStyle from './GlobalStyles';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import CreateForm from './pages/CreateForm';
+import PrivateRoute from './utils/PrivateRoute';
+import PublicRoute from './utils/PublicRoute';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem('loggedIn')));
@@ -15,21 +18,29 @@ function App() {
 
       <Router>
         <>
-          <Header setLoggedIn={setLoggedIn} />
+          <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
           <Switch>
-            <Route exact path="/">
-              {loggedIn ? <></> : <Redirect to="/login" />}
-            </Route>
+            <PrivateRoute path="/" component={CreateForm} loggedIn={loggedIn} exact />
+
+            <PrivateRoute path="/form/create" component={CreateForm} loggedIn={loggedIn} />
 
             {/* EU02 EU06 */}
-            <Route path="/login">
-              {loggedIn ? <Redirect to="/" /> : <Login setLoggedIn={setLoggedIn} />}
-            </Route>
+            <PublicRoute
+              path="/login"
+              component={Login}
+              loggedIn={loggedIn}
+              setLoggedIn={setLoggedIn}
+              restricted
+            />
 
             {/* EU01 */}
-            <Route path="/signup">
-              {loggedIn ? <Redirect to="/" /> : <SignUp setLoggedIn={setLoggedIn} />}
-            </Route>
+            <PublicRoute
+              path="/signup"
+              component={SignUp}
+              loggedIn={loggedIn}
+              setLoggedIn={setLoggedIn}
+              restricted
+            />
           </Switch>
         </>
       </Router>
