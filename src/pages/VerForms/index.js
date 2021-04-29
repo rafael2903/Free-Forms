@@ -46,7 +46,7 @@ function VerForms() {
             <FormItem key={form.id}>
               <p>{form.title}</p>
               <div>
-                <FiLink size={15} title="Copiar link" />
+                <FiLink title="Copiar link" />
                 <CgCopy title="Duplicar formulário" />
                 <IoEyeOutline title="Visualizar formulário" />
                 <FaRegEdit title="Editar formulário" />
