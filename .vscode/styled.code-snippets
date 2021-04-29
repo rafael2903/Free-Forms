@@ -16,13 +16,21 @@
 	// 	"description": "Log output to console"
 	// }
 	"Import styled from styled-components": {
-		"scope": "javascript",
+		"scope": "javascript, javascriptreact",
 		"prefix": "styled",
 		"body": [
-			"import styled from 'styled-components';",
-			"",
+			"import styled from 'styled-components';\n",
 			"export const $1 = styled.$2``;"
 		],
 		"description": "import styled"
+	},
+	"Import from styles.js": {
+		"scope": "javascript, javascriptreact",
+		"prefix": "importstyles",
+		"body": [
+			"import { $1 } from './styles';\n",
+			"export default $1;"
+		],
+		"description": "Import from styles.js"
 	}
 }
