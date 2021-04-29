@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HeaderButton = styled.button`
+export const Button = styled.button`
   color: white;
   background-color: #167ef9;
   padding: 0.5rem 1.5rem;
@@ -11,6 +11,8 @@ export const HeaderButton = styled.button`
   margin-left: 1rem;
   display: flex;
   align-items: center;
+  text-decoration: none;
+  /* margin-right: 1rem; */
 
   :focus {
     outline: none;

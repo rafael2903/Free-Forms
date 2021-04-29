@@ -9,11 +9,13 @@ export const ContainerVerForms = styled.div`
   margin: auto;
   padding: 1.5rem;
   flex-direction: column;
+
   .ButtonsContainer {
     display: flex;
     height: 35px;
     margin-top: 1.5rem;
   }
+
   & > div {
     display: flex;
     align-items: center;

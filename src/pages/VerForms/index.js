@@ -1,7 +1,8 @@
 import { HiPlusSm } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 import ContainerVerForms from '../../components/ContainerVerForms';
 import TitleVerForms from '../../components/TitleVerForms';
-import HeaderButton from '../../components/HeaderButton';
+import Button from '../../components/Button';
 import ListForms from '../../components/ListForms';
 import FormItem from '../../components/FormItem';
 
@@ -16,11 +17,11 @@ function VerForms() {
       <div>
         <TitleVerForms>Meus formulários</TitleVerForms>
         <div className="ButtonsContainer">
-          <HeaderButton>Compartilhados comigo</HeaderButton>
-          <HeaderButton>
+          <Button>Compartilhados comigo</Button>
+          <Button as={Link} to="/form/create">
             <HiPlusSm size={30} />
             Criar novo formulário
-          </HeaderButton>
+          </Button>
         </div>
       </div>
       <ListForms>
