@@ -9,47 +9,40 @@ export const FormItem = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  font-size: 0.9rem;
 
   div {
+    display: flex;
+    align-items: center;
+
     svg {
       color: white;
       margin-left: 0.6rem;
       cursor: pointer;
+      height: 1.9rem;
+      width: 1.9rem;
+      padding: 0.4rem;
+      border-radius: 0.3rem;
     }
+
     svg:nth-child(1) {
       background-color: #4ac6d7;
-      height: 2rem;
-      width: 2rem;
-      padding: 0.4rem;
-      border-radius: 0.3rem;
     }
+
     svg:nth-child(2) {
       background-color: #994ad7;
-      height: 2rem;
-      width: 2rem;
-      padding: 0.4rem;
-      border-radius: 0.3rem;
     }
+
     svg:nth-child(3) {
       background-color: #32cb94;
-      height: 2rem;
-      width: 2rem;
-      padding: 0.4rem;
-      border-radius: 0.3rem;
     }
+
     svg:nth-child(4) {
       background-color: #438eff;
-      height: 2rem;
-      width: 2rem;
-      padding: 0.4rem;
-      border-radius: 0.3rem;
     }
+
     svg:nth-child(5) {
       background-color: #ff3737;
-      height: 2rem;
-      width: 2rem;
-      padding: 0.4rem;
-      border-radius: 0.3rem;
     }
   }
 `;

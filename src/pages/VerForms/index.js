@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import { HiPlusSm } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { FiLink } from 'react-icons/fi';
@@ -5,12 +7,14 @@ import { CgCopy } from 'react-icons/cg';
 import { FaRegEdit } from 'react-icons/fa';
 import { IoEyeOutline } from 'react-icons/io5';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import ContainerVerForms from '../../components/ContainerVerForms';
+import { useState } from 'react';
 import TitleVerForms from '../../components/TitleVerForms';
 import Button from '../../components/Button';
 import ListForms from '../../components/ListForms';
 import FormItem from '../../components/FormItem';
 import api from '../../services/api';
+import ContainerVerForms from '../../components/ContainerVerForms';
+import NothingMessage from '../../components/NothingMessage';
 
 function VerForms() {
   const forms = [
@@ -18,6 +22,9 @@ function VerForms() {
     { id: 2, title: 'Formulário sem título 2' },
     { id: 3, title: 'Formulário sem título 3' },
   ];
+
+  // const [forms, setForms] = useState([]);
+
   function destroy(id) {
     api.delete(`/forms/${id}`);
   }
@@ -34,23 +41,22 @@ function VerForms() {
         </div>
       </div>
       <ListForms>
-        {forms.map((form) => (
-          <FormItem key={form.id}>
-            <p>{form.title}</p>
-            <div>
-              <FiLink size={20} color="white" title="Copiar link" />
-              <CgCopy size={20} color="white" title="Duplicar formulário" />
-              <IoEyeOutline size={20} color="white" title="Visualizar formulário" />
-              <FaRegEdit size={20} color="white" title="Editar formulário" />
-              <RiDeleteBin6Line
-                size={20}
-                color="white"
-                title="Excluir formulário"
-                onClick={() => destroy(form.id)}
-              />
-            </div>
-          </FormItem>
-        ))}
+        {forms.length ? (
+          forms.map((form) => (
+            <FormItem key={form.id}>
+              <p>{form.title}</p>
+              <div>
+                <FiLink size={15} title="Copiar link" />
+                <CgCopy title="Duplicar formulário" />
+                <IoEyeOutline title="Visualizar formulário" />
+                <FaRegEdit title="Editar formulário" />
+                <RiDeleteBin6Line title="Excluir formulário" onClick={() => destroy(form.id)} />
+              </div>
+            </FormItem>
+          ))
+        ) : (
+          <NothingMessage>Você ainda não criou nenhum formulário :(</NothingMessage>
+        )}
       </ListForms>
     </ContainerVerForms>
   );
