@@ -24,4 +24,6 @@ export const LogoContainer = styled.div`
   display: flex;
 `;
 
-export const ButtonsContainer = styled.div``;
+export const ButtonsContainer = styled.div`
+  display: flex;
+`;

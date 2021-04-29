@@ -7,6 +7,7 @@ export const ContainerVerForms = styled.div`
   border-radius: 5px;
   display: flex;
   margin: auto;
+  height: auto;
   padding: 1.5rem;
   flex-direction: column;
 
@@ -15,13 +16,13 @@ export const ContainerVerForms = styled.div`
     height: 35px;
     margin-top: 1.5rem;
   }
-
-  & > div {
+  .ContainerForms {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     height: 4.5rem;
     border-bottom: 1px solid black;
+    padding-bottom: 1rem;
   }
 `;
