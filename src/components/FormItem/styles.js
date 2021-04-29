@@ -23,25 +23,29 @@ export const FormItem = styled.div`
       width: 1.9rem;
       padding: 0.4rem;
       border-radius: 0.3rem;
+
+      :hover {
+        filter: brightness(115%);
+      }
     }
 
-    svg:nth-child(1) {
+    svg.link {
       background-color: #4ac6d7;
     }
 
-    svg:nth-child(2) {
+    svg.duplicate {
       background-color: #994ad7;
     }
 
-    svg:nth-child(3) {
+    svg.view {
       background-color: #32cb94;
     }
 
-    svg:nth-child(4) {
+    svg.edit {
       background-color: #438eff;
     }
 
-    svg:nth-child(5) {
+    svg.delete {
       background-color: #ff3737;
     }
   }

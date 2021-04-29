@@ -14,7 +14,7 @@ import ListForms from '../../components/ListForms';
 import FormItem from '../../components/FormItem';
 import api from '../../services/api';
 import ContainerVerForms from '../../components/ContainerVerForms';
-import NothingMessage from '../../components/NothingMessage';
+import StatusMessage from '../../components/StatusMessage';
 
 function VerForms() {
   const forms = [
@@ -46,16 +46,20 @@ function VerForms() {
             <FormItem key={form.id}>
               <p>{form.title}</p>
               <div>
-                <FiLink title="Copiar link" />
-                <CgCopy title="Duplicar formulário" />
-                <IoEyeOutline title="Visualizar formulário" />
-                <FaRegEdit title="Editar formulário" />
-                <RiDeleteBin6Line title="Excluir formulário" onClick={() => destroy(form.id)} />
+                <FiLink className="link" title="Copiar link" />
+                <CgCopy className="duplicate" title="Duplicar formulário" />
+                <IoEyeOutline className="view" title="Visualizar formulário" />
+                <FaRegEdit className="edit" title="Editar formulário" />
+                <RiDeleteBin6Line
+                  className="delete"
+                  title="Excluir formulário"
+                  onClick={() => destroy(form.id)}
+                />
               </div>
             </FormItem>
           ))
         ) : (
-          <NothingMessage>Você ainda não criou nenhum formulário :(</NothingMessage>
+          <StatusMessage>Você ainda não criou nenhum formulário</StatusMessage>
         )}
       </ListForms>
     </ContainerVerForms>
