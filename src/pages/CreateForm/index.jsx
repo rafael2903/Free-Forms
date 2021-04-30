@@ -28,10 +28,14 @@ function CreateForm() {
     ],
   }));
 
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
   return (
     <Main>
       <FormHeader />
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Title
           value={form.title}
           onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
