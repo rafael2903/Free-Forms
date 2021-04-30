@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Option } from './styles';
 
 function QuestionOption({ value, type }) {

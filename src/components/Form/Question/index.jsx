@@ -49,7 +49,7 @@ function Question({ form, setForm, question }) {
       )}
       {question.type !== 'text' && (
         <AddOption>
-          <Button onClick={addOption}>
+          <Button onClick={addOption} type="button">
             <HiPlusSm size={30} />
             Adicionar opção
           </Button>

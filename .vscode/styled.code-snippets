@@ -19,7 +19,7 @@
 		"scope": "javascript, javascriptreact",
 		"prefix": "styled",
 		"body": [
-			"import styled from 'styled-components';\n",
+			"import styled from 'styled-components';\r\n",
 			"export const $1 = styled.$2``;"
 		],
 		"description": "import styled"
@@ -28,7 +28,7 @@
 		"scope": "javascript, javascriptreact",
 		"prefix": "importstyles",
 		"body": [
-			"import { $1 } from './styles';\n",
+			"import { $1 } from './styles';\r\n",
 			"export default $1;"
 		],
 		"description": "Import from styles.js"
