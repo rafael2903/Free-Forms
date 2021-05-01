@@ -20,6 +20,7 @@ function CreateForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // api.get('/forms/19').then((res) => console.log(res.data.question));
     api
       .post('/forms', { user_id: getUserId(), question: form })
       .then(() => history.push('/'))

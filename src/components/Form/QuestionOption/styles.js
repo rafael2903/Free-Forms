@@ -37,9 +37,15 @@ export const Option = styled.label`
     right: 1rem;
     transform: translateY(-50%);
     display: none;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.7rem;
+    height: 1.7rem;
     color: #777;
+    padding: 0.2rem;
+
+    :hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+    }
   }
 
   :hover {
