@@ -1,64 +1,58 @@
 import { HiPlusSm } from 'react-icons/hi';
-import { useState } from 'react';
+import { CgClose } from 'react-icons/cg';
+
 import { Container, AddOption } from './styles';
 import QuestionOption from '../QuestionOption';
 import Title from '../Title';
 import Button from '../../Button';
 
-function Question({ form, setForm, question }) {
-  const [newOption, setNewOption] = useState('');
-
-  function changeQuestion(newTitle) {
-    let newQuestion;
-    const newQuestions = form.questions.map((formQuestion) => {
-      newQuestion = formQuestion;
-      if (formQuestion.id === question.id) {
-        newQuestion.title = newTitle;
-      }
-      return newQuestion;
-    });
-
+function Question({ form, setForm, question, questionId }) {
+  function changeTitle(newTitle) {
+    const newQuestions = [...form.questions];
+    newQuestions[questionId].title = newTitle;
     const newForm = { ...form, questions: newQuestions };
-
     setForm(newForm);
   }
 
   function addOption() {
-    let newQuestion;
-    const newQuestions = form.questions.map((formQuestion) => {
-      newQuestion = formQuestion;
-      if (formQuestion.id === question.id) {
-        newQuestion.options.push(newOption);
-      }
-      return newQuestion;
-    });
-
+    const newQuestions = [...form.questions];
+    newQuestions[questionId].options.push('Opção');
     const newForm = { ...form, questions: newQuestions };
-
     setForm(newForm);
-    setNewOption('');
+  }
+
+  function removeQuestion() {
+    const newForm = { ...form };
+    newForm.questions.splice(questionId, 1);
+    setForm(newForm);
   }
 
   return (
     <Container>
-      <Title size="sm" value={question.title} onChange={(e) => changeQuestion(e.target.value)} />
-      {question.options ? (
-        question.options.map((option) => <QuestionOption value={option} type={question.type} />)
+      <Title size="sm" value={question.title} onChange={(e) => changeTitle(e.target.value)} />
+      <CgClose onClick={removeQuestion} />
+
+      {question.type !== 'text' ? (
+        question.options.map((option, index) => (
+          <QuestionOption
+            value={option}
+            type={question.type}
+            form={form}
+            setForm={setForm}
+            questionId={questionId}
+            optionId={index}
+          />
+        ))
       ) : (
         <QuestionOption value="Resposta" type={question.type} />
       )}
+
       {question.type !== 'text' && (
         <AddOption>
           <Button onClick={addOption} type="button">
             <HiPlusSm size={30} />
             Adicionar opção
           </Button>
-          <input
-            type="text"
-            value={newOption}
-            onChange={(e) => setNewOption(e.target.value)}
-            placeholder="Insira uma nova opção"
-          />
         </AddOption>
       )}
     </Container>

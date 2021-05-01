@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
-import { Link, useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Form } from '../../components/Form/Form/styles';
 import FormHeader from '../../components/Form/FormHeader';
 import Main from '../../components/Main';
@@ -8,40 +7,35 @@ import Title from '../../components/Form/Title';
 import Question from '../../components/Form/Question';
 import api from '../../services/api';
 import Button from '../../components/Button';
+import StatusMessage from '../../components/StatusMessage';
 import ButtonsContainer from '../../components/Form/ButtonsContainer';
+import { getUserId } from '../../services/auth';
 
 function CreateForm() {
   const history = useHistory();
   const [type, setType] = useState('text');
-  const [form, setForm] = useState(() => ({
-    id: 1,
-    title: 'Formulário sem título 1',
-    questions: [
-      { id: 1, title: 'Qual é o seu nome', type: 'text' },
-      {
-        id: 2,
-        title: 'Você gosta de chocolate?',
-        type: 'radio',
-        options: ['sim', 'não', 'talvez'],
-      },
-      {
-        id: 3,
-        title: 'Selecione suas frutas preferidas',
-        type: 'checkbox',
-        options: ['Maçã', 'Banana', 'Laranja', 'Melancia', 'Mamão'],
-      },
-    ],
-  }));
+  const [error, setError] = useState(false);
+
+  const [form, setForm] = useState({ title: 'Formulário sem título', questions: [] });
 
   function handleSubmit(e) {
     e.preventDefault();
     api
-      .get('forms/1')
-      .then((res) => res.data.question)
-      .then((data) => {
-        console.log(JSON.parse(data));
-        // data = data.replace("',',");
-      });
+      .post('/forms', { user_id: getUserId(), question: form })
+      .then(() => history.push('/'))
+      .catch(() => setError(true));
+  }
+
+  function addQuestion() {
+    const newQuestions = [
+      ...form.questions,
+      {
+        title: 'Pergunta',
+        type,
+        options: ['Opção'],
+      },
+    ];
+    setForm({ ...form, questions: newQuestions });
   }
 
   return (
@@ -52,11 +46,13 @@ function CreateForm() {
           value={form.title}
           onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
         />
-        {form.questions?.map((question) => (
-          <Question form={form} setForm={setForm} question={question} />
+
+        {form.questions?.map((question, index) => (
+          <Question form={form} setForm={setForm} question={question} questionId={index} />
         ))}
+
         <ButtonsContainer className="select-type">
-          <Button bold onClick={history.goBack}>
+          <Button bold onClick={addQuestion} type="button">
             Adicionar pergunta
           </Button>
           <Button as="select" value={type} onChange={(e) => setType(e.target.value)} secondary bold>
@@ -65,6 +61,8 @@ function CreateForm() {
             <option value="checkbox">Caixas de seleção</option>
           </Button>
         </ButtonsContainer>
+
+        {error && <StatusMessage error>Não foi possível salvar o formulário</StatusMessage>}
 
         <ButtonsContainer className="actions">
           <Button secondary bold onClick={history.goBack}>

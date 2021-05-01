@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const FormItem = styled.div`
+export const FormItem = styled(Link)`
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.3);
   margin-top: 1rem;
@@ -10,6 +11,17 @@ export const FormItem = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
+  color: black;
+  text-decoration: none;
+
+  :hover {
+    /* background-color: rgba(0, 0, 0, 0.07); */
+    border-color: #167ef9;
+
+    svg {
+      opacity: 1;
+    }
+  }
 
   div {
     display: flex;
@@ -23,9 +35,11 @@ export const FormItem = styled.div`
       width: 1.9rem;
       padding: 0.4rem;
       border-radius: 0.3rem;
+      opacity: 0;
+      z-index: 10;
 
       :hover {
-        filter: brightness(115%);
+        transform: scale(1.1);
       }
     }
 

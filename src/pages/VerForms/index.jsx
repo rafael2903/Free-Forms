@@ -43,7 +43,7 @@ function VerForms() {
       <ListForms>
         {forms.length ? (
           forms.map((form) => (
-            <FormItem key={form.id}>
+            <FormItem key={form.id} to={`/forms/edit/${form.id}`}>
               <p>{form.title}</p>
               <div>
                 <FiLink className="link" title="Copiar link" />
