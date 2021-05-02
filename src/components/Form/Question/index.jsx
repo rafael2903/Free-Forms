@@ -15,8 +15,9 @@ function Question({ form, setForm, question, questionId }) {
   }
 
   function addOption() {
+    const number = form.questions[questionId].options.length + 1;
     const newQuestions = [...form.questions];
-    newQuestions[questionId].options.push('Opção');
+    newQuestions[questionId].options.push(`Opção ${number}`);
     const newForm = { ...form, questions: newQuestions };
     setForm(newForm);
   }

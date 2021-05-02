@@ -28,12 +28,13 @@ function CreateForm() {
   }
 
   function addQuestion() {
+    const number = form.questions.length + 1;
     const newQuestions = [
       ...form.questions,
       {
-        title: 'Pergunta',
+        title: `Pergunta ${number}`,
         type,
-        options: ['Opção'],
+        options: ['Opção 1'],
       },
     ];
     setForm({ ...form, questions: newQuestions });
