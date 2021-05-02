@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Main from '../Main';
 
 export const ContainerVerForms = styled(Main)`
-  height: auto;
   padding: 1.5rem;
 
   .ButtonsContainer {
