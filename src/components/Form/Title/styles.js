@@ -14,7 +14,6 @@ export const Title = styled.input`
   :focus {
     outline: none;
     border-bottom-color: #167ef9;
-    color: #167ef9;
   }
 
   ${(props) =>

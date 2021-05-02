@@ -11,6 +11,7 @@ export const StyledHeader = styled.header`
   background-color: white;
   position: sticky;
   top: 0;
+  z-index: 1000;
 `;
 
 export const StyledP = styled.p`
