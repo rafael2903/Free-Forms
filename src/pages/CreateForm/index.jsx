@@ -46,6 +46,8 @@ function CreateForm() {
         <Title
           value={form.title}
           onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
+          autoFocus
+          onFocus={(e) => e.target.select()}
         />
 
         {form.questions?.map((question, index) => (

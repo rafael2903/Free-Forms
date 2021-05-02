@@ -24,11 +24,15 @@ export const Option = styled.label`
     flex-grow: 1;
     padding-bottom: 0.2rem;
     border-bottom: 1px solid transparent;
+  }
 
-    :focus {
-      outline: none;
-      border-bottom-color: black;
-    }
+  input[type='text']:enabled:hover {
+    border-bottom-color: #999;
+  }
+
+  input[type='text']:enabled:focus {
+    outline: none;
+    border-bottom-color: #167ef9;
   }
 
   svg {
@@ -37,10 +41,10 @@ export const Option = styled.label`
     right: 1rem;
     transform: translateY(-50%);
     display: none;
-    width: 1.7rem;
-    height: 1.7rem;
+    width: 1.9rem;
+    height: 1.9rem;
     color: #777;
-    padding: 0.2rem;
+    padding: 0.3rem;
 
     :hover {
       background-color: rgba(0, 0, 0, 0.1);

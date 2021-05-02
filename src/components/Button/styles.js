@@ -33,6 +33,7 @@ export const Button = styled.button`
       :hover {
         background-color: white;
         border: 2px solid #167ef9;
+        box-shadow: none;
       }
     `}
 `;

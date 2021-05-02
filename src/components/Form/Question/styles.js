@@ -18,10 +18,10 @@ export const Container = styled.div`
     top: 1rem;
     right: 1rem;
     display: none;
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.9rem;
+    height: 1.9rem;
     color: #777;
-    padding: 0.2rem;
+    padding: 0.3rem;
 
     :hover {
       background-color: rgba(0, 0, 0, 0.07);

@@ -17,7 +17,7 @@ function QuestionOption({ value, type, form, setForm, questionId, optionId }) {
   if (type === 'text')
     return (
       <Option>
-        <input type="text" placeholder={value} disabled />
+        <input type="text" placeholder={value} disabled onFocus={(e) => e.target.select()} />
       </Option>
     );
 
@@ -25,7 +25,12 @@ function QuestionOption({ value, type, form, setForm, questionId, optionId }) {
     <Option>
       <input type={type} checked disabled />
       <CgClose onClick={removeOption} />
-      <input type="text" value={value} onChange={(e) => changeOption(e.target.value)} />
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => changeOption(e.target.value)}
+        onFocus={(e) => e.target.select()}
+      />
     </Option>
   );
 }

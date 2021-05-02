@@ -29,7 +29,12 @@ function Question({ form, setForm, question, questionId }) {
 
   return (
     <Container>
-      <Title size="sm" value={question.title} onChange={(e) => changeTitle(e.target.value)} />
+      <Title
+        size="sm"
+        value={question.title}
+        onChange={(e) => changeTitle(e.target.value)}
+        onFocus={(e) => e.target.select()}
+      />
       <CgClose onClick={removeQuestion} />
 
       {question.type !== 'text' ? (
