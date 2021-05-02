@@ -1,21 +1,17 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const FormItem = styled(Link)`
+export const FormItem = styled.div`
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.3);
   margin-top: 1rem;
   border-radius: 0.5rem;
-  padding: 0.5rem 1.5rem;
+  padding-right: 1.5rem;
   align-items: center;
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
-  color: black;
-  text-decoration: none;
 
   :hover {
-    /* background-color: rgba(0, 0, 0, 0.07); */
     border-color: #167ef9;
 
     svg {

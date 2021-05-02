@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form } from '../../components/Form/Form/styles';
@@ -20,7 +21,6 @@ function CreateForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // api.get('/forms/19').then((res) => console.log(res.data.question));
     api
       .post('/forms', { user_id: getUserId(), question: form })
       .then(() => history.push('/'))
