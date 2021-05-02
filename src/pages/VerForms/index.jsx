@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import { HiPlusSm } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiLink } from 'react-icons/fi';
 import { CgCopy } from 'react-icons/cg';
 import { FaRegEdit } from 'react-icons/fa';
@@ -22,6 +22,8 @@ function VerForms() {
     { id: 2, title: 'Formulário sem título 2' },
     { id: 3, title: 'Formulário sem título 3' },
   ];
+
+  const history = useHistory();
 
   // const [forms, setForms] = useState([]);
 
@@ -49,7 +51,11 @@ function VerForms() {
                 <FiLink className="link" title="Copiar link" />
                 <CgCopy className="duplicate" title="Duplicar formulário" />
                 <IoEyeOutline className="view" title="Visualizar formulário" />
-                <FaRegEdit className="edit" title="Editar formulário" />
+                <FaRegEdit
+                  className="edit"
+                  title="Editar formulário."
+                  onClick={() => history.push('/form/edit')}
+                />
                 <RiDeleteBin6Line
                   className="delete"
                   title="Excluir formulário"
