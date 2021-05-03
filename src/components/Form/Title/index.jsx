@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Title } from './styles';
-
+// EU05
 export default Title;

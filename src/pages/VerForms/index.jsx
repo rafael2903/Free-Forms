@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { HiPlusSm } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { FiLink } from 'react-icons/fi';
@@ -19,6 +17,7 @@ import EditLink from '../../components/EditLink';
 import Snackbar from '../../components/Snackbar';
 import Alert from '../../components/Alert';
 
+// EU07
 function VerForms() {
   const [forms, setForms] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,6 +44,7 @@ function VerForms() {
       });
   }, [refreshKey]);
 
+  // EU09
   function destroy(id) {
     api
       .delete(`/forms/${id}`)
@@ -86,6 +86,7 @@ function VerForms() {
                     <CgCopy className="duplicate" title="Duplicar formulário" />
                     <IoEyeOutline className="view" title="Visualizar formulário" />
                     <FaRegEdit className="edit" title="Editar formulário" />
+                    {/* EU09 */}
                     <RiDeleteBin6Line
                       className="delete"
                       title="Excluir formulário"

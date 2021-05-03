@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form } from '../../components/Form/Form/styles';
+import Form from '../../components/Form/Form';
 import FormHeader from '../../components/Form/FormHeader';
 import Main from '../../components/Main';
 import Title from '../../components/Form/Title';
@@ -12,6 +11,7 @@ import StatusMessage from '../../components/StatusMessage';
 import ButtonsContainer from '../../components/Form/ButtonsContainer';
 import { getUserId } from '../../services/auth';
 
+// EU05
 function CreateForm() {
   const history = useHistory();
   const [type, setType] = useState('text');

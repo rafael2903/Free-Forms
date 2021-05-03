@@ -1,6 +1,7 @@
 import { CgClose } from 'react-icons/cg';
 import { Option } from './styles';
 
+// EU05
 function QuestionOption({ value, type, form, setForm, questionId, optionId }) {
   function removeOption() {
     const newForm = { ...form };

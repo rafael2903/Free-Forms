@@ -21,8 +21,10 @@ function App() {
         <>
           <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
           <Switch>
+            {/* EU07 */}
             <PrivateRoute path="/" component={VerForms} loggedIn={loggedIn} exact />
 
+            {/* EU05 */}
             <PrivateRoute path="/form/create" component={CreateForm} loggedIn={loggedIn} />
 
             {/* EU02 EU06 */}
