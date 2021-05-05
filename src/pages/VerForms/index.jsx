@@ -27,8 +27,9 @@ function VerForms() {
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
+    const UserId = localStorage.getItem('user_id');
     api
-      .get('/forms')
+      .get(`/create_for_me/${UserId}`)
       .then((res) => res.data)
       .then((data) => {
         const jsonForm = data.map((form) => ({
