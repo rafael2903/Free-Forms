@@ -16,6 +16,7 @@ import StatusMessage from '../../components/StatusMessage';
 import EditLink from '../../components/EditLink';
 import Snackbar from '../../components/Snackbar';
 import Alert from '../../components/Alert';
+import { getUserId } from '../../services/auth';
 
 // EU07
 function VerForms() {
@@ -31,14 +32,18 @@ function VerForms() {
       .get('/forms')
       .then((res) => res.data)
       .then((data) => {
+        console.log(data);
         const jsonForm = data.map((form) => ({
           id: form.id,
           title: JSON.parse(form.question).hash.title,
+          questions: JSON.parse(form.question).hash.question,
         }));
+        console.log(jsonForm);
         setForms(jsonForm);
         setLoading(false);
       })
-      .catch(() => {
+      .catch((erro) => {
+        console.log(erro);
         setError('Não foi possível carregar seus formulários');
         setLoading(false);
       });
@@ -54,6 +59,20 @@ function VerForms() {
       })
       .catch(() => {
         setActionsError('Não foi possível excluir o formulário');
+      });
+  }
+  function duplicate(form) {
+    api
+      .post(`/forms`, {
+        user_id: getUserId(),
+        question: { title: `Cópia de ${form.title}`, questions: form.questions },
+      })
+      .then(() => {
+        setRefreshKey((oldKey) => oldKey + 1);
+        setActionsSuccess('Formulário duplicado');
+      })
+      .catch(() => {
+        setActionsError('Não foi possível duplicar o formulário');
       });
   }
 
@@ -83,7 +102,11 @@ function VerForms() {
                   <EditLink to={`/forms/edit/${form.id}`}>{form.title}</EditLink>
                   <div>
                     <FiLink className="link" title="Copiar link" />
-                    <CgCopy className="duplicate" title="Duplicar formulário" />
+                    <CgCopy
+                      className="duplicate"
+                      title="Duplicar formulário"
+                      onClick={() => duplicate(form)}
+                    />
                     <IoEyeOutline className="view" title="Visualizar formulário" />
                     <FaRegEdit className="edit" title="Editar formulário" />
                     {/* EU09 */}
