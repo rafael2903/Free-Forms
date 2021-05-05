@@ -1,10 +1,6 @@
 import { HiPlusSm } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import { FiLink } from 'react-icons/fi';
-import { CgCopy } from 'react-icons/cg';
-import { FaRegEdit } from 'react-icons/fa';
 import { IoEyeOutline } from 'react-icons/io5';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import TitleVerForms from '../../components/TitleVerForms';
 import Button from '../../components/Button';
@@ -18,13 +14,12 @@ import Snackbar from '../../components/Snackbar';
 import Alert from '../../components/Alert';
 
 // EU07
-function VerForms() {
+function FormAssigned() {
   const [forms, setForms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [actionsError, setActionsError] = useState('');
   const [actionsSuccess, setActionsSuccess] = useState('');
-  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     api
@@ -42,35 +37,22 @@ function VerForms() {
         setError('Não foi possível carregar seus formulários');
         setLoading(false);
       });
-  }, [refreshKey]);
-
-  // EU09
-  function destroy(id) {
-    api
-      .delete(`/forms/${id}`)
-      .then(() => {
-        setRefreshKey((oldKey) => oldKey + 1);
-        setActionsSuccess('Formulário excluído');
-      })
-      .catch(() => {
-        setActionsError('Não foi possível excluir o formulário');
-      });
-  }
+  }, []);
 
   function statusMessage() {
     if (loading) return <StatusMessage loading />;
     if (error) return <StatusMessage error>{error}</StatusMessage>;
-    return <StatusMessage>Você ainda não criou nenhum formulário</StatusMessage>;
+    return <StatusMessage>Você ainda não tem nenhum formulário atribuido</StatusMessage>;
   }
 
   return (
     <>
       <ContainerVerForms>
         <div className="ContainerForms">
-          <TitleVerForms>Meus formulários</TitleVerForms>
+          <TitleVerForms>Compartilhados comigo</TitleVerForms>
           <div className="ButtonsContainer">
-            <Button as={Link} to="/assigned">
-              Compartilhados comigo
+            <Button as={Link} to="/">
+              Meus formulários
             </Button>
             <Button as={Link} to="/form/create">
               <HiPlusSm size={30} />
@@ -84,16 +66,8 @@ function VerForms() {
                 <FormItem key={form.id}>
                   <EditLink to={`/forms/edit/${form.id}`}>{form.title}</EditLink>
                   <div>
-                    <FiLink className="link" title="Copiar link" />
-                    <CgCopy className="duplicate" title="Duplicar formulário" />
                     <IoEyeOutline className="view" title="Visualizar formulário" />
-                    <FaRegEdit className="edit" title="Editar formulário" />
                     {/* EU09 */}
-                    <RiDeleteBin6Line
-                      className="delete"
-                      title="Excluir formulário"
-                      onClick={() => destroy(form.id)}
-                    />
                   </div>
                 </FormItem>
               ))
@@ -114,4 +88,4 @@ function VerForms() {
   );
 }
 
-export default VerForms;
+export default FormAssigned;

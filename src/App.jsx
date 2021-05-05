@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Header from './components/Header';
-
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import VerForms from './pages/VerForms';
 import CreateForm from './pages/CreateForm';
+import FormAssigned from './pages/FormAssigned';
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
 import GlobalStyle from './GlobalStyles';
@@ -26,6 +26,9 @@ function App() {
 
             {/* EU05 */}
             <PrivateRoute path="/form/create" component={CreateForm} loggedIn={loggedIn} />
+
+            {/* EU16 */}
+            <PrivateRoute path="/assigned" component={FormAssigned} loggedIn={loggedIn} />
 
             {/* EU02 EU06 */}
             <PublicRoute
