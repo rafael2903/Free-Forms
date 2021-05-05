@@ -32,18 +32,16 @@ function VerForms() {
       .get('/forms')
       .then((res) => res.data)
       .then((data) => {
-        console.log(data);
         const jsonForm = data.map((form) => ({
           id: form.id,
           title: JSON.parse(form.question).hash.title,
           questions: JSON.parse(form.question).hash.question,
         }));
-        console.log(jsonForm);
+
         setForms(jsonForm);
         setLoading(false);
       })
-      .catch((erro) => {
-        console.log(erro);
+      .catch(() => {
         setError('Não foi possível carregar seus formulários');
         setLoading(false);
       });
