@@ -5,11 +5,19 @@ export const FormItem = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
   margin-top: 1rem;
   border-radius: 0.5rem;
-  padding: 0.5rem 1.5rem;
+  padding-right: 1.5rem;
   align-items: center;
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
+
+  :hover {
+    border-color: #167ef9;
+
+    svg {
+      opacity: 1;
+    }
+  }
 
   div {
     display: flex;
@@ -23,9 +31,11 @@ export const FormItem = styled.div`
       width: 1.9rem;
       padding: 0.4rem;
       border-radius: 0.3rem;
+      opacity: 0;
+      z-index: 10;
 
       :hover {
-        filter: brightness(115%);
+        transform: scale(1.1);
       }
     }
 

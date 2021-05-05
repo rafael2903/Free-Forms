@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Button = styled.button`
   color: white;
@@ -12,12 +12,28 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   text-decoration: none;
+  justify-content: center;
+  font-weight: ${(props) => (props.bold ? 'bold' : 'normal')};
+
+  :hover {
+    box-shadow: 0 0 5px 0px rgba(22, 124, 249, 1);
+  }
 
   :focus {
     outline: none;
   }
 
-  :hover {
-    background-color: #3992ff;
-  }
+  ${(props) =>
+    props.secondary &&
+    css`
+      background-color: white;
+      color: #444;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+
+      :hover {
+        background-color: white;
+        border: 2px solid #167ef9;
+        box-shadow: none;
+      }
+    `}
 `;
