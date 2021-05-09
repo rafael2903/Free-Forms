@@ -12,6 +12,7 @@ import StatusMessage from '../../components/StatusMessage';
 import EditLink from '../../components/EditLink';
 import Snackbar from '../../components/Snackbar';
 import Alert from '../../components/Alert';
+import { getUserId } from '../../services/auth';
 
 // EU07
 function FormAssigned() {
@@ -23,7 +24,7 @@ function FormAssigned() {
 
   useEffect(() => {
     api
-      .get('/forms')
+      .get(`/assigned/${getUserId()}`)
       .then((res) => res.data)
       .then((data) => {
         const jsonForm = data.map((form) => ({
