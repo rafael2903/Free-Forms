@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { HiPlusSm } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import { FiLink } from 'react-icons/fi';
 import { CgCopy } from 'react-icons/cg';
 import { FaRegEdit } from 'react-icons/fa';
-import { IoEyeOutline } from 'react-icons/io5';
+import { IoEyeOutline, IoShareSocial } from 'react-icons/io5';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import TitleVerForms from '../../components/TitleVerForms';
@@ -13,11 +13,11 @@ import FormItem from '../../components/FormItem';
 import api from '../../services/api';
 import ContainerVerForms from '../../components/ContainerVerForms';
 import StatusMessage from '../../components/StatusMessage';
-import EditLink from '../../components/EditLink';
 import Snackbar from '../../components/Snackbar';
 import Alert from '../../components/Alert';
 import { getUserId } from '../../services/auth';
 import { encode } from '../../services/id';
+import ShareModal from '../../components/ShareModal';
 
 // EU07
 function VerForms() {
@@ -27,8 +27,8 @@ function VerForms() {
   const [actionsError, setActionsError] = useState('');
   const [actionsSuccess, setActionsSuccess] = useState('');
   const [refreshKey, setRefreshKey] = useState(0);
-
-  const { href } = window.location;
+  const [show, setShow] = useState(false);
+  const [currentForm, setCurrentForm] = useState(0);
 
   useEffect(() => {
     api
@@ -38,7 +38,7 @@ function VerForms() {
         const jsonForm = data.map((form) => ({
           id: form.id,
           title: JSON.parse(form.question).hash.title,
-          questions: JSON.parse(form.question).hash.question,
+          questions: JSON.parse(form.question).hash.questions,
         }));
 
         setForms(jsonForm);
@@ -89,9 +89,6 @@ function VerForms() {
         <div className="ContainerForms">
           <TitleVerForms>Meus formulários</TitleVerForms>
           <div className="ButtonsContainer">
-            <Button as={Link} to="/assigned">
-              Compartilhados comigo
-            </Button>
             <Button as={Link} to="/form/create">
               <HiPlusSm size={30} />
               Criar novo formulário
@@ -102,14 +99,15 @@ function VerForms() {
           {forms.length
             ? forms.map((form) => (
                 <FormItem key={form.id}>
-                  <EditLink to={`/forms/edit/${encode(form.id)}`}>{form.title}</EditLink>
+                  <p>{form.title}</p>
                   <div>
-                    <FiLink
+                    {/* EU17 EU03 */}
+                    <IoShareSocial
                       className="link"
-                      title="Copiar link"
+                      title="Compartilhar formulário"
                       onClick={() => {
-                        navigator.clipboard.writeText(`${href}form/view/${encode(form.id)}`);
-                        setActionsSuccess('Link copiado para a área de transferência');
+                        setCurrentForm(form.id);
+                        setShow(true);
                       }}
                     />
                     <CgCopy
@@ -143,6 +141,7 @@ function VerForms() {
           <Alert>{actionsSuccess}</Alert>
         </Snackbar>
       )}
+      <ShareModal show={show} setShow={setShow} formId={currentForm} />
     </>
   );
 }

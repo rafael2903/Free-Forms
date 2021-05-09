@@ -12,7 +12,7 @@ import ButtonsContainer from '../../components/FormComponents/ButtonsContainer';
 import { getUserId } from '../../services/auth';
 import { decode } from '../../services/id';
 
-// EU05
+// EU04
 function ViewForm() {
   let { id } = useParams();
   [id] = decode(id);

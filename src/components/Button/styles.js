@@ -17,6 +17,7 @@ export const Button = styled.button`
 
   :hover {
     box-shadow: 0 0 5px 0px rgba(22, 124, 249, 1);
+    color: white;
   }
 
   :focus {
@@ -34,6 +35,7 @@ export const Button = styled.button`
         background-color: white;
         border: 2px solid #167ef9;
         box-shadow: none;
+        color: #444;
       }
     `}
 `;

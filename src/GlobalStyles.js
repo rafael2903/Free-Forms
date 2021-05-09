@@ -17,6 +17,15 @@ const GlobalStyle = createGlobalStyle`
         flex-direction: column;
     }
 
+    p {
+        margin-bottom: 0;
+    }
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    line-height: normal;
+}
+
 `;
 
 export default GlobalStyle;

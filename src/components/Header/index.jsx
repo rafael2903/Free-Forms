@@ -1,11 +1,11 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ButtonsContainer, LogoContainer, StyledHeader, StyledP } from './styles';
 import img from '../../assets/google-forms.svg';
-import Button from '../Button';
+// import Button from '../Button';
 
 function Header({ loggedIn, setLoggedIn }) {
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   function logout() {
     localStorage.clear();
@@ -19,12 +19,27 @@ function Header({ loggedIn, setLoggedIn }) {
         <StyledP>Free Forms</StyledP>
       </LogoContainer>
       <ButtonsContainer>
-        {loggedIn && pathname !== '/' && (
-          <Button as={Link} to="/">
-            Meus Formulários
-          </Button>
+        {loggedIn && (
+          <nav>
+            <ul>
+              <li>
+                <NavLink exact to="/">
+                  Meus Formulários
+                </NavLink>
+              </li>
+              <li>
+                <NavLink exact to="/assigned">
+                  Compartilhados comigo
+                </NavLink>
+              </li>
+              <li>
+                <button type="button" onClick={logout}>
+                  Sair
+                </button>
+              </li>
+            </ul>
+          </nav>
         )}
-        {loggedIn && <Button onClick={logout}>Sair</Button>}
       </ButtonsContainer>
     </StyledHeader>
   );

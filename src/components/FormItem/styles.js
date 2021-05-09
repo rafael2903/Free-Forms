@@ -19,6 +19,15 @@ export const FormItem = styled.div`
     }
   }
 
+  p {
+    display: block;
+    height: auto;
+    flex-grow: 1;
+    text-decoration: none;
+    padding: 0.9rem 1.5rem;
+    color: black;
+  }
+
   div {
     display: flex;
     align-items: center;
