@@ -10,6 +10,7 @@ export const Title = styled.input`
   font-weight: bold;
   color: #333;
   margin-bottom: 2.5rem;
+  background-color: white;
 
   :focus {
     outline: none;

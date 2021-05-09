@@ -17,6 +17,7 @@ import EditLink from '../../components/EditLink';
 import Snackbar from '../../components/Snackbar';
 import Alert from '../../components/Alert';
 import { getUserId } from '../../services/auth';
+import { encode } from '../../services/id';
 
 // EU07
 function VerForms() {
@@ -26,6 +27,8 @@ function VerForms() {
   const [actionsError, setActionsError] = useState('');
   const [actionsSuccess, setActionsSuccess] = useState('');
   const [refreshKey, setRefreshKey] = useState(0);
+
+  const { href } = window.location;
 
   useEffect(() => {
     api
@@ -99,7 +102,7 @@ function VerForms() {
           {forms.length
             ? forms.map((form) => (
                 <FormItem key={form.id}>
-                  <EditLink to={`/forms/edit/${form.id}`}>{form.title}</EditLink>
+                  <EditLink to={`/forms/edit/${encode(form.id)}`}>{form.title}</EditLink>
                   <div>
                     <FiLink className="link" title="Copiar link" />
                     <CgCopy
@@ -108,6 +111,18 @@ function VerForms() {
                       onClick={() => duplicate(form)}
                     />
                     <IoEyeOutline className="view" title="Visualizar formulário" />
+                    <FiLink
+                      className="link"
+                      title="Copiar link"
+                      onClick={() => {
+                        navigator.clipboard.writeText(`${href}form/view/${encode(form.id)}`);
+                        setActionsSuccess('Link copiado para a área de transferência');
+                      }}
+                    />
+                    <CgCopy className="duplicate" title="Duplicar formulário" />
+                    <Link to={`/form/view/${encode(form.id)}`} target="_blank">
+                      <IoEyeOutline className="view" title="Visualizar formulário" />
+                    </Link>
                     <FaRegEdit className="edit" title="Editar formulário" />
                     {/* EU09 */}
                     <RiDeleteBin6Line

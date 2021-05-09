@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const QuestionStyles = styled.div`
   padding: 1rem 1.5rem;
   width: 100%;
   border: 2px solid rgba(0, 0, 0, 0.2);
@@ -35,11 +35,4 @@ export const Container = styled.div`
       cursor: pointer;
     }
   }
-`;
-
-export const AddOption = styled.div`
-  display: flex;
-  height: 2.3rem;
-  margin-top: 1.5rem;
-  align-items: center;
 `;

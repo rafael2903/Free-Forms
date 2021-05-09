@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
@@ -14,17 +15,18 @@ export const StyledHeader = styled.header`
   z-index: 1000;
 `;
 
+export const LogoContainer = styled(Link)`
+  display: flex;
+  text-decoration: none;
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+`;
+
 export const StyledP = styled.p`
   font-size: 2.1rem;
   font-weight: bold;
   color: #555;
   margin-left: 0.5rem;
-`;
-
-export const LogoContainer = styled.div`
-  display: flex;
-`;
-
-export const ButtonsContainer = styled.div`
-  display: flex;
 `;
