@@ -38,7 +38,9 @@ function VerForms() {
         const jsonForm = data.map((form) => ({
           id: form.id,
           title: JSON.parse(form.question).hash.title,
+          questions: JSON.parse(form.question).hash.question,
         }));
+
         setForms(jsonForm);
         setLoading(false);
       })
@@ -60,6 +62,20 @@ function VerForms() {
         setActionsError('Não foi possível excluir o formulário');
       });
   }
+  function duplicate(form) {
+    api
+      .post(`/forms`, {
+        user_id: getUserId(),
+        question: { title: `Cópia de ${form.title}`, questions: form.questions },
+      })
+      .then(() => {
+        setRefreshKey((oldKey) => oldKey + 1);
+        setActionsSuccess('Formulário duplicado');
+      })
+      .catch(() => {
+        setActionsError('Não foi possível duplicar o formulário');
+      });
+  }
 
   function statusMessage() {
     if (loading) return <StatusMessage loading />;
@@ -73,7 +89,9 @@ function VerForms() {
         <div className="ContainerForms">
           <TitleVerForms>Meus formulários</TitleVerForms>
           <div className="ButtonsContainer">
-            <Button>Compartilhados comigo</Button>
+            <Button as={Link} to="/assigned">
+              Compartilhados comigo
+            </Button>
             <Button as={Link} to="/form/create">
               <HiPlusSm size={30} />
               Criar novo formulário
@@ -86,6 +104,13 @@ function VerForms() {
                 <FormItem key={form.id}>
                   <EditLink to={`/forms/edit/${encode(form.id)}`}>{form.title}</EditLink>
                   <div>
+                    <FiLink className="link" title="Copiar link" />
+                    <CgCopy
+                      className="duplicate"
+                      title="Duplicar formulário"
+                      onClick={() => duplicate(form)}
+                    />
+                    <IoEyeOutline className="view" title="Visualizar formulário" />
                     <FiLink
                       className="link"
                       title="Copiar link"
