@@ -2,7 +2,11 @@ import styled, { css } from 'styled-components';
 
 export const StatusMessage = styled.p`
   text-align: center;
-  color: ${(props) => (props.error ? 'red' : '#444')};
+  color: ${(props) => {
+    if (props.error) return 'red';
+    if (props.success) return 'green';
+    return '#444';
+  }};
   border-radius: 100%;
   position: relative;
   min-height: 1.2rem;
