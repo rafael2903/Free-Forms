@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import VerForms from './pages/VerForms';
 import CreateForm from './pages/CreateForm';
+import ViewForm from './pages/ViewForm';
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
 import GlobalStyle from './GlobalStyles';
@@ -26,6 +27,8 @@ function App() {
 
             {/* EU05 */}
             <PrivateRoute path="/form/create" component={CreateForm} loggedIn={loggedIn} />
+
+            <PublicRoute path="/form/view/:id" component={ViewForm} />
 
             {/* EU02 EU06 */}
             <PublicRoute

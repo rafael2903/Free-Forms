@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Option = styled.label`
+export const OptionStyles = styled.label`
   display: block;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.07);
@@ -33,6 +33,23 @@ export const Option = styled.label`
   input[type='text']:enabled:focus {
     outline: none;
     border-bottom-color: #167ef9;
+  }
+
+  textarea {
+    margin-left: 1rem;
+    min-width: 100%;
+    min-height: 1.5rem;
+    color: black;
+    font-size: 1rem;
+    background-color: transparent;
+    padding: 0.5rem 0;
+    border: none;
+    height: 10rem;
+    resize: none;
+  }
+
+  textarea:focus {
+    outline: none;
   }
 
   svg {

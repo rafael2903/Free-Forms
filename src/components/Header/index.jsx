@@ -14,7 +14,7 @@ function Header({ loggedIn, setLoggedIn }) {
 
   return (
     <StyledHeader>
-      <LogoContainer>
+      <LogoContainer to="/">
         <img src={img} alt="Free Form logo" />
         <StyledP>Free Forms</StyledP>
       </LogoContainer>
