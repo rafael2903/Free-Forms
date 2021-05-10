@@ -9,10 +9,10 @@ import FormItem from '../../components/FormItem';
 import api from '../../services/api';
 import ContainerVerForms from '../../components/ContainerVerForms';
 import StatusMessage from '../../components/StatusMessage';
-import EditLink from '../../components/EditLink';
 import Snackbar from '../../components/Snackbar';
 import Alert from '../../components/Alert';
 import { getUserId } from '../../services/auth';
+import { encode } from '../../services/id';
 
 // EU07
 function FormAssigned() {
@@ -52,9 +52,6 @@ function FormAssigned() {
         <div className="ContainerForms">
           <TitleVerForms>Compartilhados comigo</TitleVerForms>
           <div className="ButtonsContainer">
-            <Button as={Link} to="/">
-              Meus formulários
-            </Button>
             <Button as={Link} to="/form/create">
               <HiPlusSm size={30} />
               Criar novo formulário
@@ -65,9 +62,11 @@ function FormAssigned() {
           {forms.length
             ? forms.map((form) => (
                 <FormItem key={form.id}>
-                  <EditLink to={`/forms/edit/${form.id}`}>{form.title}</EditLink>
+                  <p>{form.title}</p>
                   <div>
-                    <IoEyeOutline className="view" title="Visualizar formulário" />
+                    <Link to={`/form/view/${encode(form.id)}`} target="_blank">
+                      <IoEyeOutline className="view" title="Visualizar formulário" />
+                    </Link>
                     {/* EU09 */}
                   </div>
                 </FormItem>
