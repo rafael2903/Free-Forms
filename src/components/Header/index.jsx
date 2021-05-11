@@ -2,15 +2,15 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { ButtonsContainer, LogoContainer, StyledHeader, StyledP } from './styles';
 import img from '../../assets/google-forms.svg';
-// import Button from '../Button';
+import { isAdministrator } from '../../services/auth';
 
 function Header({ loggedIn, setLoggedIn }) {
-  // const { pathname } = useLocation();
-
   function logout() {
     localStorage.clear();
     setLoggedIn(false);
   }
+
+  const isAdmin = isAdministrator();
 
   return (
     <StyledHeader>
@@ -22,9 +22,23 @@ function Header({ loggedIn, setLoggedIn }) {
         {loggedIn && (
           <nav>
             <ul>
+              {isAdmin && (
+                <>
+                  <li>
+                    <NavLink exact to="/users">
+                      Gerenciar usuários
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink exact to="/forms">
+                      Gerenciar formulários
+                    </NavLink>
+                  </li>
+                </>
+              )}
               <li>
                 <NavLink exact to="/">
-                  Meus Formulários
+                  Meus formulários
                 </NavLink>
               </li>
               <li>

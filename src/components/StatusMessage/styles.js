@@ -9,7 +9,7 @@ export const StatusMessage = styled.p`
   }};
   border-radius: 100%;
   position: relative;
-  min-height: 1.2rem;
+  min-height: 1.7rem;
   width: 100%;
 
   ${(props) =>
@@ -22,8 +22,8 @@ export const StatusMessage = styled.p`
         top: 0;
         left: 50%;
         transform: translateX(-50%);
-        width: 1.2rem;
-        height: 1.2rem;
+        width: 1.7rem;
+        height: 1.7rem;
         border-radius: 100%;
         border: 4px solid transparent;
         border-top-color: #167ef9;

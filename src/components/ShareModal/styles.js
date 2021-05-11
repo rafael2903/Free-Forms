@@ -32,7 +32,7 @@ export const StyledModal = styled(Modal)`
 
   form {
     display: flex;
-    margin-bottom: 1rem;
+    margin-bottom: 1.6rem;
     align-items: center;
   }
 
@@ -43,6 +43,28 @@ export const StyledModal = styled(Modal)`
 
   div.modal-body {
     padding: 1rem 1.5rem;
+  }
+
+  div.respondents {
+    margin-bottom: 1.6rem;
+
+    div {
+      border: 1px solid #999;
+      border-radius: 0.2rem;
+      max-height: 10rem;
+      overflow-y: auto;
+      min-height: 2rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.5rem;
+      border-bottom: 1px solid #999;
+    }
+
+    p:last-child {
+      border-bottom: none;
+    }
   }
 `;
 

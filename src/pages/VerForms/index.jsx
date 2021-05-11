@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { HiPlusSm } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { CgCopy } from 'react-icons/cg';
@@ -17,10 +18,12 @@ import Alert from '../../components/Alert';
 import { getUserId } from '../../services/auth';
 import { encode } from '../../services/id';
 import ShareModal from '../../components/ShareModal';
+import Search from '../../components/Search';
 
 // EU07
 function VerForms() {
   const [forms, setForms] = useState([]);
+  const [filteredForms, setFilteredForms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [actionsError, setActionsError] = useState('');
@@ -39,8 +42,8 @@ function VerForms() {
           title: JSON.parse(form.question).hash.title,
           questions: JSON.parse(form.question).hash.questions,
         }));
-
         setForms(jsonForm);
+        setFilteredForms(jsonForm);
         setLoading(false);
       })
       .catch(() => {
@@ -79,7 +82,9 @@ function VerForms() {
   function statusMessage() {
     if (loading) return <StatusMessage loading />;
     if (error) return <StatusMessage error>{error}</StatusMessage>;
-    return <StatusMessage>Você ainda não criou nenhum formulário</StatusMessage>;
+    if (forms.length === 0)
+      return <StatusMessage>Você ainda não criou nenhum formulário</StatusMessage>;
+    return <StatusMessage>Formulário não encontrado</StatusMessage>;
   }
 
   return (
@@ -94,9 +99,10 @@ function VerForms() {
             </Button>
           </div>
         </div>
+        <Search searchIn={forms} setFiltered={setFilteredForms} />
         <ListForms>
-          {forms.length
-            ? forms.map((form) => (
+          {filteredForms.length
+            ? filteredForms.map((form) => (
                 <FormItem key={form.id}>
                   <p>{form.title}</p>
                   <div>

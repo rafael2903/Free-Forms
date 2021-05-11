@@ -1,7 +1,7 @@
 import { CgClose } from 'react-icons/cg';
 import { MdContentCopy } from 'react-icons/md';
 import Modal from 'react-bootstrap/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyledModal, Input } from './styles';
 import { encode } from '../../services/id';
 import Button from '../Button';
@@ -18,6 +18,18 @@ function ShareModal({ show, setShow, formId }) {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [respondents, setRespondents] = useState([]);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  useEffect(() => {
+    api
+      .get(`/respondents/${formId}`)
+      .then((res) => res.data)
+      .then((data) => {
+        setRespondents([...data]);
+      });
+    setEmail('');
+  }, [refreshKey, formId]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -27,7 +39,10 @@ function ShareModal({ show, setShow, formId }) {
       .then((userId) => {
         api
           .post('/user_has_forms', { user_id: userId, form_id: formId })
-          .then(() => setSuccess('Formulário compartilhado com sucesso'))
+          .then(() => {
+            setSuccess('Formulário compartilhado com sucesso');
+            setRefreshKey((oldKey) => oldKey + 1);
+          })
           .catch(() => setError('Não foi possível compartilhar o formulário'));
       })
       .catch(() => setError('Usuário não encontrado'));
@@ -67,6 +82,14 @@ function ShareModal({ show, setShow, formId }) {
           />
           <Button type="submit">Compartilhar</Button>
         </form>
+        <div className="respondents">
+          <h2>Compartilhado com:</h2>
+          <div>
+            {respondents.map((respondent) => (
+              <p>{respondent.user.email}</p>
+            ))}
+          </div>
+        </div>
       </Modal.Body>
 
       {error && (

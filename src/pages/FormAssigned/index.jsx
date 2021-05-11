@@ -13,10 +13,12 @@ import Snackbar from '../../components/Snackbar';
 import Alert from '../../components/Alert';
 import { getUserId } from '../../services/auth';
 import { encode } from '../../services/id';
+import Search from '../../components/Search';
 
 // EU07
 function FormAssigned() {
   const [forms, setForms] = useState([]);
+  const [filteredForms, setFilteredForms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [actionsError, setActionsError] = useState('');
@@ -32,6 +34,7 @@ function FormAssigned() {
           title: JSON.parse(form.question).hash.title,
         }));
         setForms(jsonForm);
+        setFilteredForms(jsonForm);
         setLoading(false);
       })
       .catch(() => {
@@ -43,7 +46,9 @@ function FormAssigned() {
   function statusMessage() {
     if (loading) return <StatusMessage loading />;
     if (error) return <StatusMessage error>{error}</StatusMessage>;
-    return <StatusMessage>Você ainda não tem nenhum formulário atribuido</StatusMessage>;
+    if (forms.length === 0)
+      return <StatusMessage>Nenhum formulário foi compartilhado com você</StatusMessage>;
+    return <StatusMessage>Formulário não encontrado</StatusMessage>;
   }
 
   return (
@@ -58,9 +63,10 @@ function FormAssigned() {
             </Button>
           </div>
         </div>
+        <Search searchIn={forms} setFiltered={setFilteredForms} />
         <ListForms>
-          {forms.length
-            ? forms.map((form) => (
+          {filteredForms.length
+            ? filteredForms.map((form) => (
                 <FormItem key={form.id}>
                   <p>{form.title}</p>
                   <div>

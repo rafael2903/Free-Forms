@@ -10,9 +10,11 @@ import ViewForm from './pages/ViewForm';
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
 import GlobalStyle from './GlobalStyles';
+import { isAdministrator } from './services/auth';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem('loggedIn')));
+  const isAdmin = isAdministrator();
 
   return (
     <div className="App">
@@ -30,6 +32,11 @@ function App() {
 
             {/* EU16 */}
             <PrivateRoute path="/assigned" component={FormAssigned} loggedIn={loggedIn} />
+
+            <PrivateRoute path="/forms" component={() => <></>} loggedIn={isAdmin} />
+
+            <PrivateRoute path="/users" component={() => <></>} loggedIn={isAdmin} />
+
             <PublicRoute path="/form/view/:id" component={ViewForm} />
 
             {/* EU02 EU06 */}

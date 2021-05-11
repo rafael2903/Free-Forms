@@ -11,6 +11,10 @@ export const FormItem = styled.div`
   justify-content: space-between;
   font-size: 0.9rem;
 
+  &:first-child {
+    margin-top: 0;
+  }
+
   :hover {
     border-color: #167ef9;
 
