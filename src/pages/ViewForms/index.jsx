@@ -1,16 +1,11 @@
-/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import { HiPlusSm } from 'react-icons/hi';
-<<<<<<< HEAD
-import { Link, useHistory } from 'react-router-dom';
-import { FiLink } from 'react-icons/fi';
-=======
 import { Link } from 'react-router-dom';
->>>>>>> 24c7b9093a077a280d3f4c5d4b42dadf30d839f7
 import { CgCopy } from 'react-icons/cg';
 import { FaRegEdit } from 'react-icons/fa';
 import { IoEyeOutline, IoShareSocial } from 'react-icons/io5';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { useEffect, useState } from 'react';
+
 import TitleVerForms from '../../components/TitleVerForms';
 import Button from '../../components/Button';
 import ListForms from '../../components/ListForms';
@@ -25,8 +20,7 @@ import { encode } from '../../services/id';
 import ShareModal from '../../components/ShareModal';
 import Search from '../../components/Search';
 
-// EU07
-function VerForms() {
+const ViewForms = () => {
   const [forms, setForms] = useState([]);
   const [filteredForms, setFilteredForms] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,12 +30,9 @@ function VerForms() {
   const [refreshKey, setRefreshKey] = useState(0);
   const [show, setShow] = useState(false);
   const [currentForm, setCurrentForm] = useState(0);
-
-  const history = useHistory();
-
   useEffect(() => {
     api
-      .get(`/create_for_me/${getUserId()}`)
+      .get('/forms')
       .then((res) => res.data)
       .then((data) => {
         const jsonForm = data.map((form) => ({
@@ -54,12 +45,11 @@ function VerForms() {
         setLoading(false);
       })
       .catch(() => {
-        setError('Não foi possível carregar seus formulários');
+        setError('Não foi possível carregar os formulários');
         setLoading(false);
       });
   }, [refreshKey]);
 
-  // EU09
   function destroy(id) {
     api
       .delete(`/forms/${id}`)
@@ -71,6 +61,7 @@ function VerForms() {
         setActionsError('Não foi possível excluir o formulário');
       });
   }
+
   function duplicate(form) {
     api
       .post(`/forms`, {
@@ -93,12 +84,11 @@ function VerForms() {
       return <StatusMessage>Você ainda não criou nenhum formulário</StatusMessage>;
     return <StatusMessage>Formulário não encontrado</StatusMessage>;
   }
-
   return (
     <>
       <ContainerVerForms>
         <div className="ContainerForms">
-          <TitleVerForms>Meus formulários</TitleVerForms>
+          <TitleVerForms> Todos formulários</TitleVerForms>
           <div className="ButtonsContainer">
             <Button as={Link} to="/form/create">
               <HiPlusSm size={30} />
@@ -130,11 +120,7 @@ function VerForms() {
                     <Link to={`/form/view/${encode(form.id)}`} target="_blank">
                       <IoEyeOutline className="view" title="Visualizar formulário" />
                     </Link>
-                    <FaRegEdit 
-                      className="edit"
-                      title="Editar formulário."
-                      onClick={() => history.push('/form/edit')}
-                    />
+                    <FaRegEdit className="edit" title="Editar formulário" />
                     {/* EU09 */}
                     <RiDeleteBin6Line
                       className="delete"
@@ -160,6 +146,6 @@ function VerForms() {
       <ShareModal show={show} setShow={setShow} formId={currentForm} />
     </>
   );
-}
+};
 
-export default VerForms;
+export default ViewForms;

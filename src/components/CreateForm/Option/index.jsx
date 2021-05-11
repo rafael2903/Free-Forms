@@ -1,7 +1,8 @@
 import { CgClose } from 'react-icons/cg';
-import { Option } from './styles';
+import OptionStyles from '../../FormComponents/Option';
 
-function QuestionOption({ value, type, form, setForm, questionId, optionId }) {
+// EU05
+function Option({ value, type, form, setForm, questionId, optionId }) {
   function removeOption() {
     const newForm = { ...form };
     newForm.questions[questionId].options.splice(optionId, 1);
@@ -10,19 +11,19 @@ function QuestionOption({ value, type, form, setForm, questionId, optionId }) {
 
   function changeOption(newText) {
     const newForm = { ...form };
-    newForm.questions[questionId].options[optionId] = newText;
+    newForm.questions[questionId].options[optionId].value = newText;
     setForm(newForm);
   }
 
   if (type === 'text')
     return (
-      <Option>
+      <OptionStyles>
         <input type="text" placeholder={value} disabled onFocus={(e) => e.target.select()} />
-      </Option>
+      </OptionStyles>
     );
 
   return (
-    <Option>
+    <OptionStyles>
       <input type={type} checked disabled />
       <CgClose onClick={removeOption} />
       <input
@@ -31,8 +32,8 @@ function QuestionOption({ value, type, form, setForm, questionId, optionId }) {
         onChange={(e) => changeOption(e.target.value)}
         onFocus={(e) => e.target.select()}
       />
-    </Option>
+    </OptionStyles>
   );
 }
 
-export default QuestionOption;
+export default Option;

@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Header from './components/Header';
-
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import VerForms from './pages/VerForms';
 import CreateForm from './pages/CreateForm';
 import EditForm from './pages/EditForm';
+import FormAssigned from './pages/FormAssigned';
+import ViewForm from './pages/ViewForm';
 import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
 import GlobalStyle from './GlobalStyles';
+import { isAdministrator } from './services/auth';
+import ViewForms from './pages/ViewForms';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem('loggedIn')));
+  const isAdmin = isAdministrator();
 
   return (
     <div className="App">
@@ -22,11 +26,22 @@ function App() {
         <>
           <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
           <Switch>
+            {/* EU07 */}
             <PrivateRoute path="/" component={VerForms} loggedIn={loggedIn} exact />
 
+            {/* EU05 */}
             <PrivateRoute path="/form/create" component={CreateForm} loggedIn={loggedIn} />
 
             <PrivateRoute path="/form/edit" component={EditForm} loggedIn={loggedIn} />
+            
+            {/* EU16 */}
+            <PrivateRoute path="/assigned" component={FormAssigned} loggedIn={loggedIn} />
+
+            <PrivateRoute path="/forms" component={ViewForms} loggedIn={isAdmin} />
+
+            <PrivateRoute path="/users" component={() => <></>} loggedIn={isAdmin} />
+
+            <PublicRoute path="/form/view/:id" component={ViewForm} />
 
             {/* EU02 EU06 */}
             <PublicRoute

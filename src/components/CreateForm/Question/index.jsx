@@ -1,11 +1,13 @@
 import { HiPlusSm } from 'react-icons/hi';
 import { CgClose } from 'react-icons/cg';
 
-import { Container, AddOption } from './styles';
-import QuestionOption from '../QuestionOption';
-import Title from '../Title';
+import AddOption from '../../FormComponents/AddOption';
+import QuestionStyles from '../../FormComponents/Question';
+import Option from '../Option';
+import Title from '../../FormComponents/Title';
 import Button from '../../Button';
 
+// EU05
 function Question({ form, setForm, question, questionId }) {
   function changeTitle(newTitle) {
     const newQuestions = [...form.questions];
@@ -17,7 +19,7 @@ function Question({ form, setForm, question, questionId }) {
   function addOption() {
     const number = form.questions[questionId].options.length + 1;
     const newQuestions = [...form.questions];
-    newQuestions[questionId].options.push(`Opção ${number}`);
+    newQuestions[questionId].options.push({ value: `Opção ${number}`, checked: false });
     const newForm = { ...form, questions: newQuestions };
     setForm(newForm);
   }
@@ -29,7 +31,7 @@ function Question({ form, setForm, question, questionId }) {
   }
 
   return (
-    <Container>
+    <QuestionStyles>
       <Title
         size="sm"
         value={question.title}
@@ -40,17 +42,18 @@ function Question({ form, setForm, question, questionId }) {
 
       {question.type !== 'text' ? (
         question.options.map((option, index) => (
-          <QuestionOption
-            value={option}
+          <Option
+            value={option.value}
             type={question.type}
             form={form}
             setForm={setForm}
+            questionTitle={question.title}
             questionId={questionId}
             optionId={index}
           />
         ))
       ) : (
-        <QuestionOption value="Resposta" type={question.type} />
+        <Option value="Resposta" type={question.type} />
       )}
 
       {question.type !== 'text' && (
@@ -61,7 +64,7 @@ function Question({ form, setForm, question, questionId }) {
           </Button>
         </AddOption>
       )}
-    </Container>
+    </QuestionStyles>
   );
 }
 export default Question;

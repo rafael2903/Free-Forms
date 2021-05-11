@@ -11,12 +11,25 @@ export const FormItem = styled.div`
   justify-content: space-between;
   font-size: 0.9rem;
 
+  &:first-child {
+    margin-top: 0;
+  }
+
   :hover {
     border-color: #167ef9;
 
     svg {
       opacity: 1;
     }
+  }
+
+  p {
+    display: block;
+    height: auto;
+    flex-grow: 1;
+    text-decoration: none;
+    padding: 0.9rem 1.5rem;
+    color: black;
   }
 
   div {

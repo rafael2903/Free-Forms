@@ -1,17 +1,17 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form } from '../../components/Form/Form/styles';
-import FormHeader from '../../components/Form/FormHeader';
+import Form from '../../components/FormComponents/Form';
+import FormHeader from '../../components/FormComponents/FormHeader';
 import Main from '../../components/Main';
-import Title from '../../components/Form/Title';
-import Question from '../../components/Form/Question';
+import Title from '../../components/FormComponents/Title';
+import Question from '../../components/CreateForm/Question';
 import api from '../../services/api';
 import Button from '../../components/Button';
 import StatusMessage from '../../components/StatusMessage';
-import ButtonsContainer from '../../components/Form/ButtonsContainer';
+import ButtonsContainer from '../../components/FormComponents/ButtonsContainer';
 import { getUserId } from '../../services/auth';
 
+// EU05
 function CreateForm() {
   const history = useHistory();
   const [type, setType] = useState('text');
@@ -29,14 +29,24 @@ function CreateForm() {
 
   function addQuestion() {
     const number = form.questions.length + 1;
-    const newQuestions = [
-      ...form.questions,
-      {
-        title: `Pergunta ${number}`,
-        type,
-        options: ['Opção 1'],
-      },
-    ];
+    const newQuestions =
+      type === 'text'
+        ? [
+            ...form.questions,
+            {
+              title: `Pergunta ${number}`,
+              value: '',
+              type,
+            },
+          ]
+        : [
+            ...form.questions,
+            {
+              title: `Pergunta ${number}`,
+              type,
+              options: [{ value: 'Opção 1', checked: false }],
+            },
+          ];
     setForm({ ...form, questions: newQuestions });
   }
 
@@ -69,7 +79,7 @@ function CreateForm() {
         {error && <StatusMessage error>Não foi possível salvar o formulário</StatusMessage>}
 
         <ButtonsContainer className="actions">
-          <Button secondary bold onClick={history.goBack}>
+          <Button secondary bold onClick={history.goBack} type="button">
             Cancelar
           </Button>
           <Button bold type="submit">
