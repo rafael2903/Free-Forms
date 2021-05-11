@@ -11,6 +11,7 @@ import PrivateRoute from './utils/PrivateRoute';
 import PublicRoute from './utils/PublicRoute';
 import GlobalStyle from './GlobalStyles';
 import { isAdministrator } from './services/auth';
+import ViewForms from './pages/ViewForms';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem('loggedIn')));
@@ -33,7 +34,7 @@ function App() {
             {/* EU16 */}
             <PrivateRoute path="/assigned" component={FormAssigned} loggedIn={loggedIn} />
 
-            <PrivateRoute path="/forms" component={() => <></>} loggedIn={isAdmin} />
+            <PrivateRoute path="/forms" component={ViewForms} loggedIn={isAdmin} />
 
             <PrivateRoute path="/users" component={() => <></>} loggedIn={isAdmin} />
 
