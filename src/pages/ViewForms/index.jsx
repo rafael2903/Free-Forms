@@ -80,15 +80,14 @@ const ViewForms = () => {
   function statusMessage() {
     if (loading) return <StatusMessage loading />;
     if (error) return <StatusMessage error>{error}</StatusMessage>;
-    if (forms.length === 0)
-      return <StatusMessage>Você ainda não criou nenhum formulário</StatusMessage>;
+    if (forms.length === 0) return <StatusMessage>Nenhum formulário foi criado</StatusMessage>;
     return <StatusMessage>Formulário não encontrado</StatusMessage>;
   }
   return (
     <>
       <ContainerVerForms>
         <div className="ContainerForms">
-          <TitleVerForms> Todos formulários</TitleVerForms>
+          <TitleVerForms>Todos os formulários</TitleVerForms>
           <div className="ButtonsContainer">
             <Button as={Link} to="/form/create">
               <HiPlusSm size={30} />
