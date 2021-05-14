@@ -1,9 +1,6 @@
-import { HiPlusSm } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { IoEyeOutline } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
-import TitleVerForms from '../../components/TitleVerForms';
-import Button from '../../components/Button';
 import ListForms from '../../components/ListForms';
 import FormItem from '../../components/FormItem';
 import api from '../../services/api';
@@ -14,6 +11,7 @@ import Alert from '../../components/Alert';
 import { getUserId } from '../../services/auth';
 import { encode } from '../../services/id';
 import Search from '../../components/Search';
+import ListHeader from '../../components/ListHeader';
 
 // EU07
 function FormAssigned() {
@@ -38,7 +36,7 @@ function FormAssigned() {
         setLoading(false);
       })
       .catch(() => {
-        setError('Não foi possível carregar seus formulários');
+        setError('Não foi possível carregar os formulários');
         setLoading(false);
       });
   }, []);
@@ -54,15 +52,7 @@ function FormAssigned() {
   return (
     <>
       <ContainerVerForms>
-        <div className="ContainerForms">
-          <TitleVerForms>Compartilhados comigo</TitleVerForms>
-          <div className="ButtonsContainer">
-            <Button as={Link} to="/form/create">
-              <HiPlusSm size={30} />
-              Criar novo formulário
-            </Button>
-          </div>
-        </div>
+        <ListHeader title="Compartilhados comigo" />
         <Search searchIn={forms} setFiltered={setFilteredForms} />
         <ListForms>
           {filteredForms.length
@@ -70,7 +60,7 @@ function FormAssigned() {
                 <FormItem key={form.id}>
                   <p>{form.title}</p>
                   <div>
-                    <Link to={`/form/view/${encode(form.id)}`} target="_blank">
+                    <Link to={`/forms/${encode(form.id)}/view`} target="_blank">
                       <IoEyeOutline className="view" title="Visualizar formulário" />
                     </Link>
                     {/* EU09 */}
@@ -80,6 +70,7 @@ function FormAssigned() {
             : statusMessage()}
         </ListForms>
       </ContainerVerForms>
+
       {actionsError && (
         <Snackbar setActions={setActionsError} autoHideDuration={2500}>
           <Alert error>{actionsError}</Alert>

@@ -21,7 +21,6 @@ function SignUp({ setLoggedIn }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     if (password !== confirmPassword) setError('As senhas não conferem');
     else {
       api

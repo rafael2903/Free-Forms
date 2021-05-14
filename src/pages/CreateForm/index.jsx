@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Form from '../../components/FormComponents/Form';
-import FormHeader from '../../components/FormComponents/FormHeader';
 import Main from '../../components/Main';
 import Title from '../../components/FormComponents/Title';
 import Question from '../../components/CreateForm/Question';
@@ -10,11 +9,11 @@ import Button from '../../components/Button';
 import StatusMessage from '../../components/StatusMessage';
 import ButtonsContainer from '../../components/FormComponents/ButtonsContainer';
 import { getUserId } from '../../services/auth';
+import TypeSelect from '../../components/FormComponents/TypeSelect';
 
 // EU05
 function CreateForm() {
   const history = useHistory();
-  const [type, setType] = useState('text');
   const [error, setError] = useState(false);
 
   const [form, setForm] = useState({ title: 'Formulário sem título', questions: [] });
@@ -27,32 +26,8 @@ function CreateForm() {
       .catch(() => setError(true));
   }
 
-  function addQuestion() {
-    const number = form.questions.length + 1;
-    const newQuestions =
-      type === 'text'
-        ? [
-            ...form.questions,
-            {
-              title: `Pergunta ${number}`,
-              value: '',
-              type,
-            },
-          ]
-        : [
-            ...form.questions,
-            {
-              title: `Pergunta ${number}`,
-              type,
-              options: [{ value: 'Opção 1', checked: false }],
-            },
-          ];
-    setForm({ ...form, questions: newQuestions });
-  }
-
   return (
     <Main>
-      <FormHeader />
       <Form onSubmit={handleSubmit}>
         <Title
           value={form.title}
@@ -65,16 +40,7 @@ function CreateForm() {
           <Question form={form} setForm={setForm} question={question} questionId={index} />
         ))}
 
-        <ButtonsContainer className="select-type">
-          <Button bold onClick={addQuestion} type="button">
-            Adicionar pergunta
-          </Button>
-          <Button as="select" value={type} onChange={(e) => setType(e.target.value)} secondary bold>
-            <option value="text">Texto</option>
-            <option value="radio">Múltipla escolha</option>
-            <option value="checkbox">Caixas de seleção</option>
-          </Button>
-        </ButtonsContainer>
+        <TypeSelect form={form} setForm={setForm} />
 
         {error && <StatusMessage error>Não foi possível salvar o formulário</StatusMessage>}
 
