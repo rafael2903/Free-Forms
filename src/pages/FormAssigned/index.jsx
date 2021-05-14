@@ -52,7 +52,7 @@ function FormAssigned() {
   return (
     <>
       <ContainerVerForms>
-        <ListHeader title="Compartilhados comigo" />
+        <ListHeader title="Compartilhados comigo" createForm />
         <Search searchIn={forms} setFiltered={setFilteredForms} />
         <ListForms>
           {filteredForms.length

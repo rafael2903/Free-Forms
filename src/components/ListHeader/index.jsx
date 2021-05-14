@@ -4,16 +4,18 @@ import { Container } from './styles';
 import TitleVerForms from '../TitleVerForms';
 import Button from '../Button';
 
-function ListHeader({ title }) {
+function ListHeader({ title, createForm }) {
   return (
     <Container>
       <TitleVerForms>{title}</TitleVerForms>
-      <div className="ButtonsContainer">
-        <Button as={Link} to="/forms/create">
-          <HiPlusSm size={30} />
-          Criar novo formulário
-        </Button>
-      </div>
+      {createForm && (
+        <div className="ButtonsContainer">
+          <Button as={Link} to="/forms/create">
+            <HiPlusSm size={30} />
+            Criar novo formulário
+          </Button>
+        </div>
+      )}
     </Container>
   );
 }

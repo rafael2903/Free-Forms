@@ -84,7 +84,7 @@ const ViewForms = () => {
   return (
     <>
       <ContainerVerForms>
-        <ListHeader title="Todos os formulários" />
+        <ListHeader title="Todos os formulários" createForm />
         <Search searchIn={forms} setFiltered={setFilteredForms} />
         <ListForms>
           {filteredForms.length

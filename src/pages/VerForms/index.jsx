@@ -87,7 +87,7 @@ function VerForms() {
   return (
     <>
       <ContainerVerForms>
-        <ListHeader title="Meus formulários" />
+        <ListHeader title="Meus formulários" createForm />
         <Search searchIn={forms} setFiltered={setFilteredForms} />
         <ListForms>
           {filteredForms.length

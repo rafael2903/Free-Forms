@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import TitleVerForms from '../../components/TitleVerForms';
 import ListForms from '../../components/ListForms';
 import FormItem from '../../components/FormItem';
 import api from '../../services/api';
@@ -8,7 +7,8 @@ import ContainerVerForms from '../../components/ContainerVerForms';
 import StatusMessage from '../../components/StatusMessage';
 import Snackbar from '../../components/Snackbar';
 import Alert from '../../components/Alert';
-import SearchUsers from '../../components/SearchUsers';
+import Search from '../../components/Search';
+import ListHeader from '../../components/ListHeader';
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -20,14 +20,12 @@ function Users() {
 
   useEffect(() => {
     api
-      .get(`/users`)
+      .get('/users')
       .then((res) => res.data)
       .then((data) => {
-        const jsonUser = data;
-        setUsers(jsonUser);
-        setFilteredUsers(jsonUser);
+        setUsers(data);
+        setFilteredUsers(data);
         setLoading(false);
-        console.log(data);
       })
       .catch(() => {
         setError('Não foi possível carregar os usuários');
@@ -38,17 +36,15 @@ function Users() {
   function statusMessage() {
     if (loading) return <StatusMessage loading />;
     if (error) return <StatusMessage error>{error}</StatusMessage>;
-    if (users.length === 0) return <StatusMessage>Nao existe nenhum usuario</StatusMessage>;
+    if (users.length === 0) return <StatusMessage>Não existem usuários</StatusMessage>;
     return <StatusMessage>Usuário não encontrado</StatusMessage>;
   }
 
   return (
     <>
       <ContainerVerForms>
-        <div className="ContainerForms">
-          <TitleVerForms>Usuários</TitleVerForms>
-        </div>
-        <SearchUsers searchIn={users} setFiltered={setFilteredUsers} />
+        <ListHeader title="Usuários" />
+        <Search searchIn={users} setFiltered={setFilteredUsers} user />
         <ListForms>
           {filteredUsers.length
             ? filteredUsers.map((user) => (
@@ -62,6 +58,7 @@ function Users() {
             : statusMessage()}
         </ListForms>
       </ContainerVerForms>
+
       {actionsError && (
         <Snackbar setActions={setActionsError} autoHideDuration={2500}>
           <Alert error>{actionsError}</Alert>

@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Expire } from './styles';
 
 function Snackbar({ autoHideDuration, children, setActions }) {
