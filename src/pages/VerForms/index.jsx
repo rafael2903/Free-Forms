@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { HiPlusSm } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { FiLink } from 'react-icons/fi';
 import { CgCopy } from 'react-icons/cg';
 import { FaRegEdit } from 'react-icons/fa';
 import { IoEyeOutline, IoShareSocial } from 'react-icons/io5';
@@ -31,6 +32,8 @@ function VerForms() {
   const [refreshKey, setRefreshKey] = useState(0);
   const [show, setShow] = useState(false);
   const [currentForm, setCurrentForm] = useState(0);
+
+  const history = useHistory();
 
   useEffect(() => {
     api
@@ -93,7 +96,7 @@ function VerForms() {
         <div className="ContainerForms">
           <TitleVerForms>Meus formulários</TitleVerForms>
           <div className="ButtonsContainer">
-            <Button as={Link} to="/form/create">
+            <Button as={Link} to="/forms/create">
               <HiPlusSm size={30} />
               Criar novo formulário
             </Button>
@@ -120,10 +123,13 @@ function VerForms() {
                       title="Duplicar formulário"
                       onClick={() => duplicate(form)}
                     />
-                    <Link to={`/form/view/${encode(form.id)}`} target="_blank">
+                    <Link to={`/forms/${encode(form.id)}/view`} target="_blank">
                       <IoEyeOutline className="view" title="Visualizar formulário" />
                     </Link>
-                    <FaRegEdit className="edit" title="Editar formulário" />
+                    <Link to={`/forms/${encode(form.id)}/edit`}>
+                      <FaRegEdit className="edit" title="Editar formulário." />
+                    </Link>
+
                     {/* EU09 */}
                     <RiDeleteBin6Line
                       className="delete"

@@ -12,8 +12,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // EU17 EU03
 function ShareModal({ show, setShow, formId }) {
-  const { href } = window.location;
-  const link = `${href}form/view/${encode(formId)}`;
+  const { origin } = window.location;
+  const link = `${origin}/forms/${encode(formId)}/view`;
 
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');

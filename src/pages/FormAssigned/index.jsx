@@ -57,7 +57,7 @@ function FormAssigned() {
         <div className="ContainerForms">
           <TitleVerForms>Compartilhados comigo</TitleVerForms>
           <div className="ButtonsContainer">
-            <Button as={Link} to="/form/create">
+            <Button as={Link} to="/forms/create">
               <HiPlusSm size={30} />
               Criar novo formulário
             </Button>
@@ -70,7 +70,7 @@ function FormAssigned() {
                 <FormItem key={form.id}>
                   <p>{form.title}</p>
                   <div>
-                    <Link to={`/form/view/${encode(form.id)}`} target="_blank">
+                    <Link to={`/forms/${encode(form.id)}/view`} target="_blank">
                       <IoEyeOutline className="view" title="Visualizar formulário" />
                     </Link>
                     {/* EU09 */}
