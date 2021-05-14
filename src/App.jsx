@@ -32,8 +32,8 @@ function App() {
             {/* EU05 */}
             <PrivateRoute path="/form/create" component={CreateForm} loggedIn={loggedIn} />
 
-            <PrivateRoute path="/form/edit" component={EditForm} loggedIn={loggedIn} />
-            
+            <PrivateRoute path="/form/edit/:id" component={EditForm} loggedIn={loggedIn} />
+
             {/* EU16 */}
             <PrivateRoute path="/assigned" component={FormAssigned} loggedIn={loggedIn} />
 

@@ -1,11 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { HiPlusSm } from 'react-icons/hi';
-<<<<<<< HEAD
 import { Link, useHistory } from 'react-router-dom';
 import { FiLink } from 'react-icons/fi';
-=======
-import { Link } from 'react-router-dom';
->>>>>>> 24c7b9093a077a280d3f4c5d4b42dadf30d839f7
 import { CgCopy } from 'react-icons/cg';
 import { FaRegEdit } from 'react-icons/fa';
 import { IoEyeOutline, IoShareSocial } from 'react-icons/io5';
@@ -130,10 +126,10 @@ function VerForms() {
                     <Link to={`/form/view/${encode(form.id)}`} target="_blank">
                       <IoEyeOutline className="view" title="Visualizar formulário" />
                     </Link>
-                    <FaRegEdit 
+                    <FaRegEdit
                       className="edit"
                       title="Editar formulário."
-                      onClick={() => history.push('/form/edit')}
+                      onClick={() => history.push(`/form/edit/${encode(form.id)}`)}
                     />
                     {/* EU09 */}
                     <RiDeleteBin6Line
