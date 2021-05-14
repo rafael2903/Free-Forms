@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useParams, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Form from '../../components/FormComponents/Form';
@@ -12,13 +11,13 @@ import Button from '../../components/Button';
 import ButtonsContainer from '../../components/FormComponents/ButtonsContainer';
 import { getUserId } from '../../services/auth';
 import { decode } from '../../services/id';
+import TypeSelect from '../../components/FormComponents/TypeSelect';
 
 function EditForm() {
   let { id } = useParams();
   [id] = decode(id);
 
   const history = useHistory();
-  const [type, setType] = useState('text');
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState(false);
   const [sendError, setSendError] = useState(false);
@@ -51,29 +50,6 @@ function EditForm() {
       });
   }
 
-  function addQuestion() {
-    const number = form.questions.length + 1;
-    const newQuestions =
-      type === 'text'
-        ? [
-            ...form.questions,
-            {
-              title: `Pergunta ${number}`,
-              value: '',
-              type,
-            },
-          ]
-        : [
-            ...form.questions,
-            {
-              title: `Pergunta ${number}`,
-              type,
-              options: [{ value: 'Opção 1', checked: false }],
-            },
-          ];
-    setForm({ ...form, questions: newQuestions });
-  }
-
   function statusMessage() {
     if (loading) return <StatusMessage loading />;
     if (success) return <StatusMessage success>Formulário modificado com sucesso!</StatusMessage>;
@@ -96,22 +72,8 @@ function EditForm() {
             {form.questions?.map((question, index) => (
               <Question form={form} setForm={setForm} question={question} questionId={index} />
             ))}
-            <ButtonsContainer className="select-type">
-              <Button bold onClick={addQuestion} type="button">
-                Adicionar pergunta
-              </Button>
-              <Button
-                as="select"
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-                secondary
-                bold
-              >
-                <option value="text">Texto</option>
-                <option value="radio">Múltipla escolha</option>
-                <option value="checkbox">Caixas de seleção</option>
-              </Button>
-            </ButtonsContainer>
+
+            <TypeSelect form={form} setForm={setForm} />
 
             {(success || sendError) && statusMessage()}
 
