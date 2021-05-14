@@ -51,6 +51,29 @@ function EditForm() {
       });
   }
 
+  function addQuestion() {
+    const number = form.questions.length + 1;
+    const newQuestions =
+      type === 'text'
+        ? [
+            ...form.questions,
+            {
+              title: `Pergunta ${number}`,
+              value: '',
+              type,
+            },
+          ]
+        : [
+            ...form.questions,
+            {
+              title: `Pergunta ${number}`,
+              type,
+              options: [{ value: 'Opção 1', checked: false }],
+            },
+          ];
+    setForm({ ...form, questions: newQuestions });
+  }
+
   function statusMessage() {
     if (loading) return <StatusMessage loading />;
     if (success) return <StatusMessage success>Formulário modificado com sucesso!</StatusMessage>;
@@ -74,7 +97,7 @@ function EditForm() {
               <Question form={form} setForm={setForm} question={question} questionId={index} />
             ))}
             <ButtonsContainer className="select-type">
-              <Button bold onClick={history.goBack}>
+              <Button bold onClick={addQuestion} type="button">
                 Adicionar pergunta
               </Button>
               <Button
@@ -93,8 +116,8 @@ function EditForm() {
             {(success || sendError) && statusMessage()}
 
             <ButtonsContainer className="actions">
-              <Button secondary bold onClick={history.goBack}>
-                Cancelar
+              <Button secondary bold onClick={history.goBack} type="button">
+                Voltar
               </Button>
               <Button bold type="submit">
                 Salvar

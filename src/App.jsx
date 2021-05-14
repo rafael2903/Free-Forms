@@ -30,9 +30,11 @@ function App() {
             <PrivateRoute path="/" component={VerForms} loggedIn={loggedIn} exact />
 
             {/* EU05 */}
-            <PrivateRoute path="/form/create" component={CreateForm} loggedIn={loggedIn} />
+            <PrivateRoute path="/forms/create" component={CreateForm} loggedIn={loggedIn} />
 
-            <PrivateRoute path="/form/edit/:id" component={EditForm} loggedIn={loggedIn} />
+            <PublicRoute path="/forms/:id/view" component={ViewForm} />
+
+            <PrivateRoute path="/forms/:id/edit" component={EditForm} loggedIn={loggedIn} />
 
             {/* EU16 */}
             <PrivateRoute path="/assigned" component={FormAssigned} loggedIn={loggedIn} />
@@ -40,8 +42,6 @@ function App() {
             <PrivateRoute path="/forms" component={ViewForms} loggedIn={isAdmin} />
 
             <PrivateRoute path="/users" component={() => <></>} loggedIn={isAdmin} />
-
-            <PublicRoute path="/form/view/:id" component={ViewForm} />
 
             {/* EU02 EU06 */}
             <PublicRoute

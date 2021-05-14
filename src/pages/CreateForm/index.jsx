@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Form from '../../components/FormComponents/Form';
-import FormHeader from '../../components/FormComponents/FormHeader';
 import Main from '../../components/Main';
 import Title from '../../components/FormComponents/Title';
 import Question from '../../components/CreateForm/Question';
@@ -52,7 +51,6 @@ function CreateForm() {
 
   return (
     <Main>
-      <FormHeader />
       <Form onSubmit={handleSubmit}>
         <Title
           value={form.title}

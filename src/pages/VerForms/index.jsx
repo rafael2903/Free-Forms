@@ -96,7 +96,7 @@ function VerForms() {
         <div className="ContainerForms">
           <TitleVerForms>Meus formulários</TitleVerForms>
           <div className="ButtonsContainer">
-            <Button as={Link} to="/form/create">
+            <Button as={Link} to="/forms/create">
               <HiPlusSm size={30} />
               Criar novo formulário
             </Button>
@@ -123,14 +123,13 @@ function VerForms() {
                       title="Duplicar formulário"
                       onClick={() => duplicate(form)}
                     />
-                    <Link to={`/form/view/${encode(form.id)}`} target="_blank">
+                    <Link to={`/forms/${encode(form.id)}/view`} target="_blank">
                       <IoEyeOutline className="view" title="Visualizar formulário" />
                     </Link>
-                    <FaRegEdit
-                      className="edit"
-                      title="Editar formulário."
-                      onClick={() => history.push(`/form/edit/${encode(form.id)}`)}
-                    />
+                    <Link to={`/forms/${encode(form.id)}/edit`}>
+                      <FaRegEdit className="edit" title="Editar formulário." />
+                    </Link>
+
                     {/* EU09 */}
                     <RiDeleteBin6Line
                       className="delete"
