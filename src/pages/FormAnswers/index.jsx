@@ -43,7 +43,7 @@ function FormAnswers({ match }) {
 
   return (
     <>
-      <FormNav match={match} />
+      <FormNav match={match} formId={id} />
 
       {loading || error ? (
         statusMessage()

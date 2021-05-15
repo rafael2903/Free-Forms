@@ -31,7 +31,7 @@ function VerForms() {
 
   useEffect(() => {
     api
-      .get(`/create_for_me/${getUserId()}`)
+      .get(`/create_by_me/${getUserId()}`)
       .then((res) => res.data)
       .then((data) => {
         const jsonForm = data.map((form) => ({
