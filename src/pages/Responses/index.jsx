@@ -1,16 +1,37 @@
-// import { useParams, useHistory } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import Form from '../../components/FormComponents/Form';
 import Title from '../../components/FormComponents/Title';
 import Question from '../../components/ViewAnswer/Question';
+import SelectAnswer from '../../components/ViewAnswer/SelectAnswer';
 
 function Responses({ formAnswers }) {
-  console.log(formAnswers[0]);
+  const [index, setIndex] = useState(0);
+
+  function nextAnswer() {
+    if (index !== formAnswers.length - 1) setIndex((idx) => idx + 1);
+  }
+
+  function previousAnswer() {
+    if (index !== 0) setIndex((idx) => idx - 1);
+  }
+
   return (
     <Form>
-      <Title value={formAnswers[0].title} />
-      {formAnswers[0].answers?.map((answer, index) => (
-        <Question form={formAnswers[0]} question={answer} questionId={index} value={answer.value} />
+      <SelectAnswer
+        email={formAnswers[index].user_email}
+        currentAnswer={index + 1}
+        totalAnswers={formAnswers.length}
+        rightButtonClick={() => nextAnswer()}
+        leftButtonClick={() => previousAnswer()}
+      />
+      <Title value={formAnswers[index].title} />
+      {formAnswers[index].answers?.map((answer, idx) => (
+        <Question
+          form={formAnswers[index]}
+          question={answer}
+          questionId={idx}
+          value={answer.value}
+        />
       ))}
     </Form>
   );
