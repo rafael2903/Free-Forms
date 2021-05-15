@@ -109,7 +109,7 @@ const ViewForms = () => {
                     <Link to={`/forms/${encode(form.id)}/view`} target="_blank">
                       <IoEyeOutline className="view" title="Visualizar formulário" />
                     </Link>
-                    <Link to={`/forms/${encode(form.id)}/edit`} state={{ from: '/forms' }}>
+                    <Link to={`/forms/${encode(form.id)}/edit`}>
                       <FaRegEdit className="edit" title="Editar formulário." />
                     </Link>
                     {/* EU09 */}
