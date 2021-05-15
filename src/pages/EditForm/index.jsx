@@ -1,8 +1,6 @@
 import { useParams, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Form from '../../components/FormComponents/Form';
-import FormHeader from '../../components/FormComponents/FormHeader';
-import Main from '../../components/Main';
 import Title from '../../components/FormComponents/Title';
 import Question from '../../components/CreateForm/Question';
 import StatusMessage from '../../components/StatusMessage';
@@ -58,37 +56,34 @@ function EditForm() {
   }
 
   return (
-    <Main>
-      <FormHeader />
-      <Form onSubmit={handleSubmit}>
-        {loading || fetchError ? (
-          statusMessage()
-        ) : (
-          <>
-            <Title
-              value={form.title}
-              onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
-            />
-            {form.questions?.map((question, index) => (
-              <Question form={form} setForm={setForm} question={question} questionId={index} />
-            ))}
+    <Form onSubmit={handleSubmit}>
+      {loading || fetchError ? (
+        statusMessage()
+      ) : (
+        <>
+          <Title
+            value={form.title}
+            onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
+          />
+          {form.questions?.map((question, index) => (
+            <Question form={form} setForm={setForm} question={question} questionId={index} />
+          ))}
 
-            <TypeSelect form={form} setForm={setForm} />
+          <TypeSelect form={form} setForm={setForm} />
 
-            {(success || sendError) && statusMessage()}
+          {(success || sendError) && statusMessage()}
 
-            <ButtonsContainer className="actions">
-              <Button secondary bold onClick={history.goBack} type="button">
-                Voltar
-              </Button>
-              <Button bold type="submit">
-                Salvar
-              </Button>
-            </ButtonsContainer>
-          </>
-        )}
-      </Form>
-    </Main>
+          <ButtonsContainer className="actions">
+            <Button secondary bold onClick={history.goBack} type="button">
+              Voltar
+            </Button>
+            <Button bold type="submit">
+              Salvar
+            </Button>
+          </ButtonsContainer>
+        </>
+      )}
+    </Form>
   );
 }
 
