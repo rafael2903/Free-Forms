@@ -1,4 +1,4 @@
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Form from '../../components/FormComponents/Form';
 import Title from '../../components/FormComponents/Title';
@@ -15,7 +15,6 @@ function EditForm() {
   let { id } = useParams();
   [id] = decode(id);
 
-  const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState(false);
   const [sendError, setSendError] = useState(false);
@@ -74,7 +73,7 @@ function EditForm() {
           {(success || sendError) && statusMessage()}
 
           <ButtonsContainer className="actions">
-            <Button secondary bold onClick={history.goBack} type="button">
+            <Button as={Link} secondary bold to="/">
               Voltar
             </Button>
             <Button bold type="submit">
