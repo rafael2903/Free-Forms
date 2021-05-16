@@ -11,6 +11,7 @@ import { getUserId } from '../../services/auth';
 import { decode } from '../../services/id';
 import TypeSelect from '../../components/FormComponents/TypeSelect';
 
+// [EU08]
 function EditForm() {
   let { id } = useParams();
   [id] = decode(id);

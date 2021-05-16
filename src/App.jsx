@@ -33,15 +33,19 @@ function App() {
             {/* EU05 */}
             <PrivateRoute path="/forms/create" component={CreateForm} loggedIn={loggedIn} />
 
+            {/* EU04 */}
             <PublicRoute path="/forms/:id/view" component={ViewForm} />
 
+            {/* EU08 EU10 */}
             <PrivateRoute path="/forms/:id" component={Divider} loggedIn={loggedIn} />
 
             {/* EU16 */}
             <PrivateRoute path="/assigned" component={FormAssigned} loggedIn={loggedIn} />
 
+            {/* EU15 */}
             <PrivateRoute path="/forms" component={ViewForms} loggedIn={isAdmin} />
 
+            {/* EU14 */}
             <PrivateRoute path="/users" component={Users} loggedIn={isAdmin} />
 
             {/* EU02 EU06 */}

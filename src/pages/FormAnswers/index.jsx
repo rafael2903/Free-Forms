@@ -6,7 +6,7 @@ import api from '../../services/api';
 import { decode } from '../../services/id';
 import Responses from '../Responses';
 import Summary from '../Summary';
-
+// [EU11]
 function FormAnswers({ match }) {
   const [formAnswers, setFormAnswers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,6 +24,7 @@ function FormAnswers({ match }) {
           form_id: answer.form_id,
           user_id: answer.user_id,
           user_email: answer.user_email,
+          created_at: answer.created_at,
           title: JSON.parse(answer.answers).hash.title,
           answers: JSON.parse(answer.answers).hash.questions,
         }));

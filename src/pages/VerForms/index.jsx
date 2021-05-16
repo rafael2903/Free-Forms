@@ -104,6 +104,7 @@ function VerForms() {
                         setShow(true);
                       }}
                     />
+                    {/* [EU12] */}
                     <CgCopy
                       className="duplicate"
                       title="Duplicar formulário"
