@@ -46,13 +46,13 @@ export const Container = styled.div`
 
   svg {
     position: absolute;
-    bottom: 2px;
+    bottom: 10px;
     right: 20px;
-    color: #888;
+    color: #278742;
     padding: 6px;
     cursor: pointer;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
   }
 
   svg:hover {

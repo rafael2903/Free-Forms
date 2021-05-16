@@ -17,22 +17,28 @@ function Responses({ formAnswers }) {
 
   return (
     <Form>
-      <SelectAnswer
-        email={formAnswers[index].user_email}
-        currentAnswer={index + 1}
-        totalAnswers={formAnswers.length}
-        rightButtonClick={() => nextAnswer()}
-        leftButtonClick={() => previousAnswer()}
-      />
-      <Title value={formAnswers[index].title} />
-      {formAnswers[index].answers?.map((answer, idx) => (
-        <Question
-          form={formAnswers[index]}
-          question={answer}
-          questionId={idx}
-          value={answer.value}
-        />
-      ))}
+      {formAnswers.length ? (
+        <>
+          <SelectAnswer
+            email={formAnswers[index].user_email}
+            currentAnswer={index + 1}
+            totalAnswers={formAnswers.length}
+            rightButtonClick={() => nextAnswer()}
+            leftButtonClick={() => previousAnswer()}
+          />
+          <Title value={formAnswers[index].title} />
+          {formAnswers[index].answers?.map((answer, idx) => (
+            <Question
+              form={formAnswers[index]}
+              question={answer}
+              questionId={idx}
+              value={answer.value}
+            />
+          ))}
+        </>
+      ) : (
+        <p>Ainda não há respostas</p>
+      )}
     </Form>
   );
 }
