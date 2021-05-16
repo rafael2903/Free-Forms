@@ -24,13 +24,13 @@ function Option({ value, type, form, setForm, questionTitle, questionId, optionI
 
   if (type === 'text')
     return (
-      <OptionStyles>
+      <OptionStyles style={{ cursor: 'pointer' }}>
         <textarea type="text" placeholder={value} onChange={changeText} />
       </OptionStyles>
     );
 
   return (
-    <OptionStyles>
+    <OptionStyles style={{ cursor: 'pointer' }}>
       <input
         type={type}
         name={questionTitle}

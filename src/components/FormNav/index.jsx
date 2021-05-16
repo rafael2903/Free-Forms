@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HiDownload } from 'react-icons/hi';
+import { HiOutlineDocumentDownload } from 'react-icons/hi';
 import { NavLink } from 'react-router-dom';
 import api from '../../services/api';
 import Alert from '../Alert';
@@ -26,7 +26,7 @@ function FormNav({ match, formId }) {
   return (
     <>
       <Container>
-        <HiDownload title="baixar respostas" onClick={downloadAnswers} />
+        <HiOutlineDocumentDownload title="baixar respostas" onClick={downloadAnswers} />
         <NavLink exact activeClassName="active" to={`${match.url}/summary`}>
           Resumo
         </NavLink>
