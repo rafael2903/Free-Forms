@@ -16,13 +16,14 @@ export const Container = styled.div`
   div {
     display: flex;
     align-items: center;
-    width: 8.5rem;
-    justify-content: space-between;
+    width: 33%;
+    justify-content: center;
   }
 
-  div p {
-    width: 4rem;
+  p {
+    /* width: 4rem; */
     text-align: center;
+    width: 30%;
   }
 
   div p::selection {

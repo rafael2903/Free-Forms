@@ -1,6 +1,5 @@
-function Summary({ formAnswers }) {
-  console.log(formAnswers);
-  return <h1>oi</h1>;
+function Summary() {
+  return <></>;
 }
 
 export default Summary;
