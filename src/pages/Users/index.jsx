@@ -17,6 +17,7 @@ function Users() {
   const [error, setError] = useState('');
   const [actionsError, setActionsError] = useState('');
   const [actionsSuccess, setActionsSuccess] = useState('');
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     api
@@ -31,7 +32,20 @@ function Users() {
         setError('Não foi possível carregar os usuários');
         setLoading(false);
       });
-  }, []);
+  }, [refreshKey]);
+
+  function handleDelete(e, id) {
+    e.preventDefault();
+    api
+      .delete(`users/${id}`)
+      .then(() => {
+        setRefreshKey((oldKey) => oldKey + 1);
+        setActionsSuccess('Usuário excluído');
+      })
+      .catch(() => {
+        setActionsError('Não foi possível excluir o usuário');
+      });
+  }
 
   function statusMessage() {
     if (loading) return <StatusMessage loading />;
@@ -51,7 +65,11 @@ function Users() {
                 <FormItem key={user.id}>
                   <p>{user.email}</p>
                   <div>
-                    <RiDeleteBin6Line className="delete" title="Excluir usuário" />
+                    <RiDeleteBin6Line
+                      className="delete"
+                      title="Excluir usuário"
+                      onClick={(e) => handleDelete(e, user.id)}
+                    />
                   </div>
                 </FormItem>
               ))
