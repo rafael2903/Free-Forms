@@ -21,7 +21,6 @@ export const Container = styled.div`
   }
 
   p {
-    /* width: 4rem; */
     text-align: center;
     width: 30%;
   }
